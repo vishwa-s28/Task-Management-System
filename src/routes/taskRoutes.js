@@ -1,5 +1,6 @@
 const express = require("express");
-const taskController = require("../controllers/taskController"); // import the task controller
+const taskController = require("../controllers/taskController"); 
+const authorize = require("../middlewares/authorize");
 const router = express.Router();
 
 router.post("/", taskController.createTask);
@@ -7,5 +8,6 @@ router.get("/", taskController.getAllTasks);
 router.get("/:id", taskController.getTaskById);
 router.put("/:id", taskController.updateTask);
 router.delete("/:id", taskController.deleteTask);
+router.put('/:id/move', authorize(['admin']), taskController.moveTask);
 
 module.exports = router;

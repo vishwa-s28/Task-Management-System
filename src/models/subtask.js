@@ -4,6 +4,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      StatusId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 1, 
+      }
     });
 
     Subtask.associate = (models) => {

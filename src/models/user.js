@@ -29,6 +29,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "UserId",
       as: "tasks",
     });
+    User.belongsToMany(models.Task, {
+      through: "UserTasks",
+      as: "sharedTasks",
+      foreignKey: "UserId",
+    });
   };
   return User;
 };

@@ -7,6 +7,7 @@ const task = require("./models/task");
 const status = require("./models/status");
 const subtask = require("./models/subtask");
 const reminder = require("./models/reminder");
+const project = require("./models/project");
 
 const db = {
   sequelize: sequelize,
@@ -15,6 +16,7 @@ const db = {
   Status: status(sequelize, DataTypes),
   SubTask: subtask(sequelize, DataTypes),
   Reminder: reminder(sequelize, DataTypes),
+  Project: project(sequelize, DataTypes),
 
   models: sequelize.models,
 };

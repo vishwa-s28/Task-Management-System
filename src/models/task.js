@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       StatusId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: 1, // Set default value to 1
+        defaultValue: 1,
       },
       UserId: {
         type: DataTypes.INTEGER,
@@ -42,6 +42,15 @@ module.exports = (sequelize, DataTypes) => {
       Task.hasMany(models.Reminder, {
         foreignKey: 'TaskId',
         as: 'reminders',
+      });
+      Task.belongsToMany(models.User, {
+        through: "UserTasks",
+        as: "sharedWith",
+        foreignKey: "TaskId",
+      });
+      Task.belongsTo(models.Project, {
+        foreignKey: 'ProjectId',
+        as: 'project',
       });
     };
   

@@ -2,9 +2,10 @@ const bcrypt = require("bcrypt");
 const db = require("../sequelize-client");
 const axios = require("axios");
 const jwt = require("jsonwebtoken");
+const { default: AppError } = require("../utils/appError");
 require("dotenv").config();
 
-const registerUser = async (req, res) => {
+const registerUser = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
     const apiKey = process.env.API_KEY;
@@ -14,17 +15,16 @@ const registerUser = async (req, res) => {
       !response.data.is_valid_format.value ||
       response.data.deliverability !== "DELIVERABLE"
     ) {
-      return res
-        .status(500)
-        .json({ message: "Invalid or undeliverable email address." });
+      throw new AppError("Invalid or undeliverable email address.", 400);
     }
 
     const { User } = db;
     const existingUser = await User.findOne({ where: { email: email } });
     if (existingUser) {
-      return res.status(500).json({
-        message: "E-Mail exists already, please pick a different one.",
-      });
+      throw new AppError(
+        "E-Mail exists already, please pick a different one.",
+        400
+      );
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -36,12 +36,11 @@ const registerUser = async (req, res) => {
     const { password: _, ...userWithoutPassword } = newUser.toJSON();
     res.status(201).json(userWithoutPassword);
   } catch (error) {
-    console.error("Error registering user:", error);
-    res.status(500).json({ message: "Internal server error" });
+    next(error);
   }
 };
 
-const loginUser = async (req, res) => {
+const loginUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
@@ -49,7 +48,7 @@ const loginUser = async (req, res) => {
     const user = await User.findOne({ where: { email } });
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!user || !isPasswordValid) {
-      return res.status(400).json({ message: "Invalid email or password" });
+      throw new AppError("Invalid email or password", 400);
     }
     const token = jwt.sign(
       { id: user.id, email: user.email },
@@ -61,8 +60,7 @@ const loginUser = async (req, res) => {
     await user.save();
     res.status(200).json({ token });
   } catch (error) {
-    console.error("Error logging in user:", error);
-    res.status(500).json({ message: "Internal server error" });
+    next(error);
   }
 };
 

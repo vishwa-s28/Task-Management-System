@@ -1,6 +1,7 @@
 const db = require("../sequelize-client");
+const { default: AppError } = require("../utils/appError");
 
-const createTask = async (req, res) => {
+const createTask = async (req, res, next) => {
   try {
     const { title, description, dueDate } = req.body;
     const { Task } = db;
@@ -16,12 +17,11 @@ const createTask = async (req, res) => {
       task,
     });
   } catch (error) {
-    console.error("Error creating task:", error);
-    res.status(500).json({ message: "Error creating task", error });
+    next(error);
   }
 };
 
-const getAllTasks = async (req, res) => {
+const getAllTasks = async (req, res, next) => {
   try {
     const { Task, User, Status, SubTask, Reminder } = db;
     const tasks = await Task.findAll({
@@ -49,12 +49,11 @@ const getAllTasks = async (req, res) => {
 
     res.status(200).json(tasks);
   } catch (error) {
-    console.error("Error retrieving tasks:", error);
-    res.status(500).json({ message: "Error retrieving tasks", error });
+    next(error);
   }
 };
 
-const getTaskById = async (req, res) => {
+const getTaskById = async (req, res, next) => {
   try {
     const { Task, User, Status, SubTask, Reminder } = db;
     const taskId = req.params.id;
@@ -83,17 +82,16 @@ const getTaskById = async (req, res) => {
     });
 
     if (!task) {
-      return res.status(404).json({ message: "Task not found" });
+      throw new AppError("Task not found", 404);
     }
 
     res.status(200).json(task);
   } catch (error) {
-    console.error("Error retrieving task:", error);
-    res.status(500).json({ message: "Error retrieving task", error });
+    next(error);
   }
 };
 
-const updateTask = async (req, res) => {
+const updateTask = async (req, res, next) => {
   try {
     const taskId = req.params.id;
     const { Task } = db;
@@ -102,7 +100,7 @@ const updateTask = async (req, res) => {
     const task = await Task.findOne({ where: { id: taskId } });
 
     if (!task) {
-      return res.status(404).json({ message: "Task not found" });
+      throw new AppError("Task not found", 404);
     }
 
     task.title = title || task.title;
@@ -119,19 +117,18 @@ const updateTask = async (req, res) => {
       task,
     });
   } catch (error) {
-    console.error("Error updating task:", error);
-    res.status(500).json({ message: "Error updating task", error });
+    next(error);
   }
 };
 
-const deleteTask = async (req, res) => {
+const deleteTask = async (req, res, next) => {
   try {
     const taskId = req.params.id;
     const { Task } = db;
     const task = await Task.findOne({ where: { id: taskId } });
 
     if (!task) {
-      return res.status(404).json({ message: "Task not found" });
+      throw new AppError("Task not found", 404);
     }
 
     await task.destroy();
@@ -140,10 +137,38 @@ const deleteTask = async (req, res) => {
       message: "Task deleted successfully",
     });
   } catch (error) {
-    console.error("Error deleting task:", error);
-    res.status(500).json({ message: "Error deleting task", error });
+    next(error);
   }
 };
+
+const moveTask = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { ProjectId } = req.body; 
+    const { Task, Project } = db;
+
+    const project = await Project.findByPk(ProjectId);
+    if (!project) {
+      throw new AppError("Project not found", 404);
+    }
+
+    const task = await Task.findByPk(id);
+    if (!task) {
+      throw new AppError("Task not found", 404);
+    }
+
+    task.ProjectId = ProjectId;
+    await task.save();
+
+    res.status(200).json({
+      message: "Task moved successfully",
+      task,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 module.exports = {
   createTask,
@@ -151,4 +176,5 @@ module.exports = {
   getTaskById,
   updateTask,
   deleteTask,
+  moveTask
 };

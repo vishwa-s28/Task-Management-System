@@ -1,4 +1,3 @@
-// config/db.js
 const { Sequelize } = require("sequelize");
 const config = require("./config");
 const { color } = require("console-log-colors");

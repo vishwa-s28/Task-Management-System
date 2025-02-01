@@ -1,8 +1,8 @@
 const express = require("express");
-const { registerUser, loginUser } = require("../controllers/subTaskController");
+const { getSubtasks, addSubtask } = require("../controllers/subTaskController");
 const router = express.Router();
 
-router.get("/", registerUser);
-router.post("/", loginUser);
+router.get("/:taskId", getSubtasks);
+router.post("/:taskId", addSubtask);
 
 module.exports = router;
