@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
-const db = require("../models");
-
+const db = require("../sequelize-client");
 
 const authenticate = async (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];

@@ -1,51 +1,43 @@
-const { Sequelize, DataTypes } = require("sequelize");
-const config = require("../config/config");
-const { color } = require("console-log-colors");
+'use strict';
 
-const sequelize = new Sequelize({
-  dialect: "postgres",
-  host: config.development.host,
-  username: config.development.username,
-  password: config.development.password,
-  logging: false,
-});
+const fs = require('fs');
+const path = require('path');
+const Sequelize = require('sequelize');
+const process = require('process');
+const basename = path.basename(__filename);
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/config.json')[env];
+const db = {};
 
-let db = {};
-
-async function checkAndSyncDatabase() {
-  try {
-    await sequelize.authenticate();
-    console.log(color.cyan("✅ Database connected successfully"));
-
-    const sequelizeWithDb = new Sequelize(
-      config.development.database,
-      config.development.username,
-      config.development.password,
-      {
-        dialect: "postgres",
-        host: config.development.host,
-        logging: false,
-      }
-    );
-
-    db.User = require("./user")(sequelizeWithDb, DataTypes);
-    db.Task = require("./task")(sequelizeWithDb, DataTypes);
-    db.Subtask = require("./subtask")(sequelizeWithDb, DataTypes);
-    db.Status = require("./status")(sequelizeWithDb, DataTypes);
-    db.Reminder = require("./reminder")(sequelizeWithDb, DataTypes);
-
-    db.sequelize = sequelizeWithDb;
-    db.Sequelize = Sequelize;
-
-    await sequelizeWithDb.sync({ force: false });
-    console.log(color.cyan("Database synced with models"));
-
-    return db;
-  } catch (error) {
-    console.error("Error checking or creating database:", error);
-    throw error;
-  }
+let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
+fs
+  .readdirSync(__dirname)
+  .filter(file => {
+    return (
+      file.indexOf('.') !== 0 &&
+      file !== basename &&
+      file.slice(-3) === '.js' &&
+      file.indexOf('.test.js') === -1
+    );
+  })
+  .forEach(file => {
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+    db[model.name] = model;
+  });
+
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
 module.exports = db;
-module.exports.checkAndSyncDatabase = checkAndSyncDatabase;

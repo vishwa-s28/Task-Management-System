@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const db = require("../models");
+const db = require("../sequelize-client");
 const axios = require("axios");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
