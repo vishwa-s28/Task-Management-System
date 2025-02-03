@@ -45,6 +45,9 @@ const getAllTasks = async (req, res, next) => {
           as: "reminders",
         },
       ],
+      order: [
+        ['createdAt', 'DESC'], 
+      ],
     });
 
     res.status(200).json(tasks);
@@ -144,7 +147,7 @@ const deleteTask = async (req, res, next) => {
 const moveTask = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { ProjectId } = req.body; 
+    const { ProjectId } = req.body;
     const { Task, Project } = db;
 
     const project = await Project.findByPk(ProjectId);

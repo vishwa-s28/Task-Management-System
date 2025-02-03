@@ -5,6 +5,7 @@ const subTaskRoutes = require("./routes/subTaskRoutes");
 const shareTaskRoutes = require("./routes/shareTaskRoutes");
 const projectRoutes = require("./routes/projectRoutes");
 const statusRoutes = require("./routes/statusRoutes");
+const filterTaskRoutes = require("./routes/filterTaskRoutes");
 const { color } = require("console-log-colors");
 const authenticate = require("./middlewares/authenticate");
 const authorize = require("./middlewares/authorize");
@@ -21,6 +22,7 @@ app.use("/projects", authenticate, authorize(["admin"]), projectRoutes);
 app.use("/task/subtask", authenticate, authorize(["admin"]), subTaskRoutes);
 app.use("/status", authenticate, authorize(["admin"]), statusRoutes);
 app.use("/task/share", authenticate, shareTaskRoutes);
+app.use("/filter-task", authenticate, filterTaskRoutes);
 app.use(notFound);
 app.use(globalErrorHandler);
 
