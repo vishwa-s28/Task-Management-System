@@ -32,6 +32,7 @@ const registerUser = async (req, res, next) => {
       name,
       email,
       password: hashedPassword,
+      ...(req.body.role && { role: req.body.role })
     });
     const { password: _, ...userWithoutPassword } = newUser.toJSON();
     res.status(201).json(userWithoutPassword);
