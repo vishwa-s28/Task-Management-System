@@ -1,0 +1,2206 @@
+{
+	"info": {
+		"_postman_id": "0232bc20-df9b-4d63-b500-17de3aa4c7e6",
+		"name": "Task Management API",
+		"description": "API for managing tasks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40512548"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"vishwa satasiya\",\r\n    \"email\": \"vishwa.s@sarvadhi.com\",\r\n    \"password\": \"abc123\",\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Registration Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"vishwa satasiya\",\r\n    \"email\": \"vishwa.s@sarvadhi.com\",\r\n    \"password\": \"abc123\",\r\n    \"role\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "172"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ac-0Rdtavd1ocaFMDQgtx4qTSeUiGk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 06:33:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 16,\n    \"name\": \"vishwa satasiya\",\n    \"email\": \"vishwa.s@sarvadhi.com\",\n    \"role\": \"admin\",\n    \"updatedAt\": \"2025-02-03T06:33:12.634Z\",\n    \"createdAt\": \"2025-02-03T06:33:12.634Z\",\n    \"token\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"vishwa.s@sarvadhi.com\",\r\n    \"password\": \"abc123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Login Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"vishwa.s@sarvadhi.com\",\r\n    \"password\": \"abc123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "193"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c1-YJpIFuP1gT8v5/WO1kJuhVfY4jk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 06:58:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY1OTMyLCJleHAiOjE3Mzg1Njk1MzJ9.GubhH8nrfOF5-XjwrjUgPDePC0WjMcg8-RZeyBsQOaQ\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "delete task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task/44",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"44"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Task not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/task/44",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"task",
+										"44"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-MhvUKW223uEas0a8hE3vgUyTuk4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 07:58:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"statusCode\": 404,\n    \"message\": \"Task not found\"\n}"
+						},
+						{
+							"name": "Successful Task Deletion",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/task/19",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"task",
+										"19"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-urf4l4W7aUjEqcMghGgrIBDtf0M\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 07:59:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Task deleted successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Task 3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task/17 ",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"17 "
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successfully update task",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Task 3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/task/17 ",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"task",
+										"17 "
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "265"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"109-QQ2vydc85AqQWQSNbI4FqNsUFtg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 08:01:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Task updated successfully\",\n    \"task\": {\n        \"id\": 17,\n        \"title\": \"Task 3\",\n        \"description\": \"create admin panel\",\n        \"dueDate\": \"2025-02-17T00:00:00.000Z\",\n        \"StatusId\": 1,\n        \"UserId\": 16,\n        \"createdAt\": \"2025-02-03T07:27:01.937Z\",\n        \"updatedAt\": \"2025-02-03T08:01:22.517Z\",\n        \"ProjectId\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "create task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJ2aXNod2Euc0BzYXJ2YWRoaS5jb20iLCJpYXQiOjE3MzgyMjUyNzMsImV4cCI6MTczODIyODg3M30.tflcW9euTXqJgA_EA9xrcgFmVULrOkqg2mmxHLF6--I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"asdfghngfd\",\r\n    \"description\": \"dss sdvjssdi jsdsdk\",\r\n    \"dueDate\": \"2025-02-13\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Task Create Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Task 1\",\r\n    \"description\": \"create registration form\",\r\n    \"dueDate\": \"2025-02-13\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/task",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"task"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "271"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10f-YjlMbJ5gPQrhg+SoFPLHx+BK3Vw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 07:24:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Task created successfully\",\n    \"task\": {\n        \"StatusId\": 1,\n        \"id\": 15,\n        \"title\": \"Task 1\",\n        \"description\": \"create registration form\",\n        \"dueDate\": \"2025-02-13T00:00:00.000Z\",\n        \"UserId\": 16,\n        \"updatedAt\": \"2025-02-03T07:24:23.689Z\",\n        \"createdAt\": \"2025-02-03T07:24:23.689Z\",\n        \"ProjectId\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "all task",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY3NTgwLCJleHAiOjE3Mzg1NzExODB9.wAHiKOgn2dfCobM8a_HT-oL6mAyD9kIHmtSB5gIYyDE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successfull Fetch Tasks",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/task",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"task"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1373"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"55d-lwrxrjmlHxtU1TDbx8QHG1dolOs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 07:27:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 17,\n        \"title\": \"Task 2\",\n        \"description\": \"create admin panel\",\n        \"dueDate\": \"2025-02-17T00:00:00.000Z\",\n        \"StatusId\": 1,\n        \"UserId\": 16,\n        \"createdAt\": \"2025-02-03T07:27:01.937Z\",\n        \"updatedAt\": \"2025-02-03T07:27:01.937Z\",\n        \"ProjectId\": null,\n        \"user\": {\n            \"name\": \"vishwa satasiya\",\n            \"email\": \"vishwa.s@sarvadhi.com\"\n        },\n        \"status\": {\n            \"name\": \"pending\"\n        },\n        \"subtasks\": [],\n        \"reminders\": []\n    },\n    {\n        \"id\": 18,\n        \"title\": \"Task 2\",\n        \"description\": \"create user panel\",\n        \"dueDate\": \"2025-02-20T00:00:00.000Z\",\n        \"StatusId\": 1,\n        \"UserId\": 16,\n        \"createdAt\": \"2025-02-03T07:27:11.920Z\",\n        \"updatedAt\": \"2025-02-03T07:27:11.920Z\",\n        \"ProjectId\": null,\n        \"user\": {\n            \"name\": \"vishwa satasiya\",\n            \"email\": \"vishwa.s@sarvadhi.com\"\n        },\n        \"status\": {\n            \"name\": \"pending\"\n        },\n        \"subtasks\": [],\n        \"reminders\": []\n    },\n    {\n        \"id\": 15,\n        \"title\": \"Task 1\",\n        \"description\": \"create registration form\",\n        \"dueDate\": \"2025-02-13T00:00:00.000Z\",\n        \"StatusId\": 1,\n        \"UserId\": 16,\n        \"createdAt\": \"2025-02-03T07:24:23.689Z\",\n        \"updatedAt\": \"2025-02-03T07:24:23.689Z\",\n        \"ProjectId\": null,\n        \"user\": {\n            \"name\": \"vishwa satasiya\",\n            \"email\": \"vishwa.s@sarvadhi.com\"\n        },\n        \"status\": {\n            \"name\": \"pending\"\n        },\n        \"subtasks\": [],\n        \"reminders\": []\n    },\n    {\n        \"id\": 16,\n        \"title\": \"Task 2\",\n        \"description\": \"create login form\",\n        \"dueDate\": \"2025-02-15T00:00:00.000Z\",\n        \"StatusId\": 1,\n        \"UserId\": 16,\n        \"createdAt\": \"2025-02-03T07:26:41.334Z\",\n        \"updatedAt\": \"2025-02-03T07:26:41.334Z\",\n        \"ProjectId\": null,\n        \"user\": {\n            \"name\": \"vishwa satasiya\",\n            \"email\": \"vishwa.s@sarvadhi.com\"\n        },\n        \"status\": {\n            \"name\": \"pending\"\n        },\n        \"subtasks\": [],\n        \"reminders\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "task by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY3NTgwLCJleHAiOjE3Mzg1NzExODB9.wAHiKOgn2dfCobM8a_HT-oL6mAyD9kIHmtSB5gIYyDE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/task/17",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"17"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Fetch Task using ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/task/17",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"task",
+										"17"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "341"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"155-ydozbE+boGyhCMOUI0py3K4Soyo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 07:29:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 17,\n    \"title\": \"Task 2\",\n    \"description\": \"create admin panel\",\n    \"dueDate\": \"2025-02-17T00:00:00.000Z\",\n    \"StatusId\": 1,\n    \"UserId\": 16,\n    \"createdAt\": \"2025-02-03T07:27:01.937Z\",\n    \"updatedAt\": \"2025-02-03T07:27:01.937Z\",\n    \"ProjectId\": null,\n    \"user\": {\n        \"name\": \"vishwa satasiya\",\n        \"email\": \"vishwa.s@sarvadhi.com\"\n    },\n    \"status\": {\n        \"name\": \"pending\"\n    },\n    \"subtasks\": [],\n    \"reminders\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ProjectId\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task/15/move",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"15",
+								"move"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Task moved successfully",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ProjectId\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/task/15/move",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"task",
+										"15",
+										"move"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "266"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10a-BZ0lVrNaNG8crqH7ANZO9keSWKo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 08:26:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Task moved successfully\",\n    \"task\": {\n        \"id\": 15,\n        \"title\": \"Task 1\",\n        \"description\": \"create registration form\",\n        \"dueDate\": \"2025-02-13T00:00:00.000Z\",\n        \"StatusId\": 1,\n        \"UserId\": 16,\n        \"createdAt\": \"2025-02-03T07:24:23.689Z\",\n        \"updatedAt\": \"2025-02-03T08:26:36.717Z\",\n        \"ProjectId\": 4\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Status",
+			"item": [
+				{
+					"name": "add Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTczMjY3LCJleHAiOjE3Mzg1NzY4Njd9.ZLCwNEYqBmtghbW0tdHZxCGfZIDO3v2Mc68xbsaD3-s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"In Review\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"status"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Status Add",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"pending\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/status",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"status"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "152"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"98-i+jkzYAUE3bz1wDm66hOXZD7HAw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 07:20:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Status added successfully\",\n    \"status\": {\n        \"id\": 4,\n        \"name\": \"pending\",\n        \"updatedAt\": \"2025-02-03T07:20:17.500Z\",\n        \"createdAt\": \"2025-02-03T07:20:17.500Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get all Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTczMjY3LCJleHAiOjE3Mzg1NzY4Njd9.ZLCwNEYqBmtghbW0tdHZxCGfZIDO3v2Mc68xbsaD3-s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"status"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get all status successfully",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/status",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"status"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "368"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"170-FH/qM1WbmWviw1ud6TNwvQ5kuuI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 09:01:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Fetch Status successfully\",\n    \"status\": [\n        {\n            \"id\": 1,\n            \"name\": \"pending\",\n            \"createdAt\": \"2025-02-03T07:20:17.500Z\",\n            \"updatedAt\": \"2025-02-03T07:20:17.500Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"In Progress\",\n            \"createdAt\": \"2025-02-03T07:22:12.974Z\",\n            \"updatedAt\": \"2025-02-03T07:22:12.974Z\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Completed\",\n            \"createdAt\": \"2025-02-03T07:22:20.229Z\",\n            \"updatedAt\": \"2025-02-03T07:22:20.229Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "update status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTczMjY3LCJleHAiOjE3Mzg1NzY4Njd9.ZLCwNEYqBmtghbW0tdHZxCGfZIDO3v2Mc68xbsaD3-s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pending\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/status/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"status",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update status successfully",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Pending\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/status/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"status",
+										"1"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "154"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9a-J3ZZx53Ppkn+eolfxEOQhK3uDDk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 09:07:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Status updated successfully\",\n    \"status\": {\n        \"id\": 1,\n        \"name\": \"Pending\",\n        \"createdAt\": \"2025-02-03T07:20:17.500Z\",\n        \"updatedAt\": \"2025-02-03T09:07:52.109Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "delete status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTczMjY3LCJleHAiOjE3Mzg1NzY4Njd9.ZLCwNEYqBmtghbW0tdHZxCGfZIDO3v2Mc68xbsaD3-s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/status/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"status",
+								"7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete status successfully",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/status/7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"status",
+										"7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-GAkrt0UlyVQM6vaet5Wwdct4Oxo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 09:11:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Status deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "get all projects",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/projects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get all projects successfully",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/projects",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projects"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "234"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ea-TWvtxIjySZUmAFxs5mIkeKT1iuo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 08:05:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 4,\n        \"name\": \"Social Networking\",\n        \"createdAt\": \"2025-02-03T08:04:15.081Z\",\n        \"updatedAt\": \"2025-02-03T08:04:15.081Z\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Task Management System\",\n        \"createdAt\": \"2025-02-03T08:04:57.082Z\",\n        \"updatedAt\": \"2025-02-03T08:04:57.082Z\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "get project by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/projects/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"5"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get project by id successfully",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/projects/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projects",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "118"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"76-Y20N4TEHiGA7dA+UYq3l84/m/rI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 08:07:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 5,\n    \"name\": \"Task Management System\",\n    \"createdAt\": \"2025-02-03T08:04:57.082Z\",\n    \"updatedAt\": \"2025-02-03T08:04:57.082Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "create project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJ2aXNod2Euc0BzYXJ2YWRoaS5jb20iLCJpYXQiOjE3MzgzOTExOTAsImV4cCI6MTczODM5NDc5MH0.s_asPsbS6Y32mLa6Q8zNkzJpUO-YaMgC_j41n-1Nt2w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Social Networking\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/projects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create project successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Social Networking\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/projects",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projects"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "166"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a6-QEu7IknbkBrfF7CoTh1thmFx7dc\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 08:04:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Project created successfully\",\n    \"project\": {\n        \"id\": 4,\n        \"name\": \"Social Networking\",\n        \"updatedAt\": \"2025-02-03T08:04:15.081Z\",\n        \"createdAt\": \"2025-02-03T08:04:15.081Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"TMS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/projects/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"5"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update project successfully",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"TMS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/projects/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projects",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "152"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"98-MJARkMIVz2oULQBAWJL6Q1DSRRA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 08:09:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Project updated successfully\",\n    \"project\": {\n        \"id\": 5,\n        \"name\": \"TMS\",\n        \"createdAt\": \"2025-02-03T08:04:57.082Z\",\n        \"updatedAt\": \"2025-02-03T08:09:40.400Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "delete project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/projects/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"5"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Project not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/projects/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projects",
+										"2"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-R2Az+dQSYLoxuGt1WVD2U6k+/HI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 08:10:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"statusCode\": 404,\n    \"message\": \"Project not found\"\n}"
+						},
+						{
+							"name": "delete project successfully",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/projects/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projects",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-TVq++3xl9bnfuNWHopYYHkYmeK4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 08:10:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Project deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Subtasks",
+			"item": [
+				{
+					"name": "create subtask",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"subTask1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task/subtask/15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"subtask",
+								"15"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create subtask successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"subTask1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/task/subtask/15",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"task",
+										"subtask",
+										"15"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "183"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b7-EO9dhdnCiQlM0ZK4MaltAJgR7CI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 08:14:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Subtask created successfully\",\n    \"subtask\": {\n        \"StatusId\": 1,\n        \"id\": 4,\n        \"TaskId\": 15,\n        \"title\": \"subTask1\",\n        \"updatedAt\": \"2025-02-03T08:14:48.907Z\",\n        \"createdAt\": \"2025-02-03T08:14:48.907Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get subtask with task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/task/subtask/15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"subtask",
+								"15"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get subtask with task successfully",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/task/subtask/15",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"task",
+										"subtask",
+										"15"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "564"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"234-zh4T3o+GeYsPkmT5N5U9X/ZWWqs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 08:17:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"task\": {\n        \"id\": 15,\n        \"title\": \"Task 1\",\n        \"description\": \"create registration form\",\n        \"dueDate\": \"2025-02-13T00:00:00.000Z\",\n        \"StatusId\": 1,\n        \"UserId\": 16,\n        \"createdAt\": \"2025-02-03T07:24:23.689Z\",\n        \"updatedAt\": \"2025-02-03T07:24:23.689Z\",\n        \"ProjectId\": null\n    },\n    \"subtasks\": [\n        {\n            \"id\": 4,\n            \"title\": \"subTask1\",\n            \"StatusId\": 1,\n            \"createdAt\": \"2025-02-03T08:14:48.907Z\",\n            \"updatedAt\": \"2025-02-03T08:14:48.907Z\",\n            \"TaskId\": 15,\n            \"status\": {\n                \"name\": \"pending\"\n            }\n        },\n        {\n            \"id\": 6,\n            \"title\": \"subTask2\",\n            \"StatusId\": 1,\n            \"createdAt\": \"2025-02-03T08:16:21.914Z\",\n            \"updatedAt\": \"2025-02-03T08:16:21.914Z\",\n            \"TaskId\": 15,\n            \"status\": {\n                \"name\": \"pending\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Share task",
+			"item": [
+				{
+					"name": "share task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userIds\": [16,17]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task/share/15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"share",
+								"15"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "share task successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userIds\": [16,17]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/task/share/15",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"task",
+										"share",
+										"15"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "124"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7c-SCe3Zi8CoAKnWvvWT44uLM/m1vY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 08:41:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Task shared successfully\",\n    \"sharedWith\": [\n        {\n            \"id\": 16,\n            \"name\": \"vishwa satasiya\"\n        },\n        {\n            \"id\": 17,\n            \"name\": \"yaadley jariwala\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get all shared tasks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task/share/15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"share",
+								"15"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get all shared tasks successfully",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/task/share/15",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"task",
+										"share",
+										"15"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "396"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18c-rzzM9z8W9/y7Nh46iW7tR045N00\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 08:42:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"taskId\": 15,\n    \"sharedWith\": [\n        {\n            \"id\": 16,\n            \"name\": \"vishwa satasiya\",\n            \"email\": \"vishwa.s@sarvadhi.com\",\n            \"UserTasks\": {\n                \"createdAt\": \"2025-02-03T08:41:45.802Z\",\n                \"updatedAt\": \"2025-02-03T08:41:45.802Z\",\n                \"UserId\": 16,\n                \"TaskId\": 15\n            }\n        },\n        {\n            \"id\": 17,\n            \"name\": \"yaadley jariwala\",\n            \"email\": \"yaadley.j@sarvadhi.com\",\n            \"UserTasks\": {\n                \"createdAt\": \"2025-02-03T08:41:45.802Z\",\n                \"updatedAt\": \"2025-02-03T08:41:45.802Z\",\n                \"UserId\": 17,\n                \"TaskId\": 15\n            }\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
