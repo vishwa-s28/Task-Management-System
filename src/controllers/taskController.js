@@ -1,10 +1,10 @@
 const db = require("../sequelize-client");
 const { default: AppError } = require("../utils/appError");
+const { Task, User, Status, SubTask, Reminder, Project } = db;
 
 const createTask = async (req, res, next) => {
   try {
     const { title, description, dueDate } = req.body;
-    const { Task } = db;
     const task = await Task.create({
       title,
       description,
@@ -23,8 +23,12 @@ const createTask = async (req, res, next) => {
 
 const getAllTasks = async (req, res, next) => {
   try {
-    const { Task, User, Status, SubTask, Reminder } = db;
-    const tasks = await Task.findAll({
+    const page = parseInt(req.query.page, 10) || 1; 
+    const limit = parseInt(req.query.limit, 10) || 10; 
+    const offset = (page - 1) * limit; 
+
+    const { rows: tasks, count: totalTasks } = await Task.findAndCountAll({
+      distinct: true,
       include: [
         {
           model: User,
@@ -45,12 +49,22 @@ const getAllTasks = async (req, res, next) => {
           as: "reminders",
         },
       ],
-      order: [
-        ['createdAt', 'DESC'], 
-      ],
+      order: [['createdAt', 'DESC']],
+      limit, 
+      offset, 
     });
 
-    res.status(200).json(tasks);
+    const totalPages = Math.ceil(totalTasks / limit);
+
+    res.status(200).json({
+      data: tasks,
+      pagination: {
+        totalTasks,
+        totalPages,
+        currentPage: page,
+        tasksPerPage: limit,
+      },
+    });
   } catch (error) {
     next(error);
   }
@@ -58,7 +72,6 @@ const getAllTasks = async (req, res, next) => {
 
 const getTaskById = async (req, res, next) => {
   try {
-    const { Task, User, Status, SubTask, Reminder } = db;
     const taskId = req.params.id;
     const task = await Task.findOne({
       where: { id: taskId },
@@ -97,7 +110,6 @@ const getTaskById = async (req, res, next) => {
 const updateTask = async (req, res, next) => {
   try {
     const taskId = req.params.id;
-    const { Task } = db;
     const { title, description, dueDate, statusId } = req.body;
 
     const task = await Task.findOne({ where: { id: taskId } });
@@ -127,7 +139,6 @@ const updateTask = async (req, res, next) => {
 const deleteTask = async (req, res, next) => {
   try {
     const taskId = req.params.id;
-    const { Task } = db;
     const task = await Task.findOne({ where: { id: taskId } });
 
     if (!task) {
@@ -148,7 +159,6 @@ const moveTask = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { ProjectId } = req.body;
-    const { Task, Project } = db;
 
     const project = await Project.findByPk(ProjectId);
     if (!project) {
@@ -171,7 +181,6 @@ const moveTask = async (req, res, next) => {
     next(error);
   }
 };
-
 
 module.exports = {
   createTask,

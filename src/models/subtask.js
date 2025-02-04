@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       Subtask.belongsTo(models.Task, {
         foreignKey: 'TaskId',
         as: 'task',
+        onDelete: 'CASCADE',
       });
   
       Subtask.belongsTo(models.Status, {

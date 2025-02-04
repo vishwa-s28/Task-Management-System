@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      ProjectId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
     });
   
     Task.associate = (models) => {
@@ -32,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       Task.hasMany(models.SubTask, {
         foreignKey: 'TaskId',
         as: 'subtasks',
+        onDelete: 'CASCADE'
       });
   
       Task.belongsTo(models.Status, {
