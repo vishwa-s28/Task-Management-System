@@ -1,11 +1,11 @@
-require("dotenv").config();
-const nodemailer = require("nodemailer");
+import "dotenv/config";
+import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.EMAIL, 
-    pass: process.env.EMAIL_PASSWORD, 
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_PASSWORD,
   },
 });
 
@@ -14,7 +14,7 @@ const sendEmail = async (to, subject, content, isHtml = false) => {
     from: process.env.EMAIL,
     to,
     subject,
-    [isHtml ? "html" : "text"]: content, 
+    [isHtml ? "html" : "text"]: content,
   };
 
   try {
@@ -25,4 +25,4 @@ const sendEmail = async (to, subject, content, isHtml = false) => {
   }
 };
 
-module.exports = sendEmail;
+export default sendEmail;

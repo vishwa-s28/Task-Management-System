@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+const defineStatusModel = (sequelize, DataTypes) => {
   const Status = sequelize.define("Status", {
     name: {
       type: DataTypes.STRING,
@@ -21,3 +21,5 @@ module.exports = (sequelize, DataTypes) => {
 
   return Status;
 };
+
+export default defineStatusModel;

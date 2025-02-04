@@ -1,5 +1,5 @@
-const jwt = require("jsonwebtoken");
-const db = require("../sequelize-client");
+import jwt from "jsonwebtoken";
+import db from "../sequelize-client.js";
 
 const authenticate = async (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
@@ -23,4 +23,4 @@ const authenticate = async (req, res, next) => {
   }
 };
 
-module.exports = authenticate;
+export default authenticate;

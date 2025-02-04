@@ -1,5 +1,6 @@
-const db = require("../sequelize-client");
-const { default: AppError } = require("../utils/appError");
+import db from "../sequelize-client.js";
+import AppError from "../utils/appError.js";
+
 const { Task, User, Status, SubTask, Reminder, Project } = db;
 
 const createTask = async (req, res, next) => {
@@ -23,9 +24,9 @@ const createTask = async (req, res, next) => {
 
 const getAllTasks = async (req, res, next) => {
   try {
-    const page = parseInt(req.query.page, 10) || 1; 
-    const limit = parseInt(req.query.limit, 10) || 10; 
-    const offset = (page - 1) * limit; 
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 10;
+    const offset = (page - 1) * limit;
 
     const { rows: tasks, count: totalTasks } = await Task.findAndCountAll({
       distinct: true,
@@ -49,9 +50,9 @@ const getAllTasks = async (req, res, next) => {
           as: "reminders",
         },
       ],
-      order: [['createdAt', 'DESC']],
-      limit, 
-      offset, 
+      order: [["createdAt", "DESC"]],
+      limit,
+      offset,
     });
 
     const totalPages = Math.ceil(totalTasks / limit);
@@ -182,11 +183,11 @@ const moveTask = async (req, res, next) => {
   }
 };
 
-module.exports = {
+export {
   createTask,
   getAllTasks,
   getTaskById,
   updateTask,
   deleteTask,
-  moveTask
+  moveTask,
 };

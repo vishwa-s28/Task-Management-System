@@ -1,5 +1,9 @@
-const express = require("express");
-const { createBulkTasks, assignTasksToUser, deleteBulkTask } = require("../controllers/bulkTaskController");
+import express from "express";
+import {
+  createBulkTasks,
+  assignTasksToUser,
+  deleteBulkTask,
+} from "../controllers/bulkTaskController.js";
 
 const router = express.Router();
 
@@ -7,4 +11,4 @@ router.post("/create", createBulkTasks);
 router.post("/assign/:userId", assignTasksToUser);
 router.delete("/delete", deleteBulkTask);
 
-module.exports = router;
+export default router;

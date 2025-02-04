@@ -1,4 +1,4 @@
-const db = require("../sequelize-client");
+import db from "../sequelize-client.js";
 
 const addSubtask = async (req, res) => {
   try {
@@ -55,7 +55,4 @@ const getSubtasks = async (req, res) => {
   }
 };
 
-module.exports = {
-  addSubtask,
-  getSubtasks,
-};
+export { addSubtask, getSubtasks };

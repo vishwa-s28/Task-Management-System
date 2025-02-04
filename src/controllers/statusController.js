@@ -1,5 +1,5 @@
-const db = require("../sequelize-client");
-const { default: AppError } = require("../utils/appError");
+import db from "../sequelize-client.js";
+import AppError from "../utils/appError.js";
 
 const getAllStatus = async (req, res, next) => {
   try {
@@ -73,9 +73,4 @@ const deleteStatus = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  addStatus,
-  getAllStatus,
-  updateStatus,
-  deleteStatus,
-};
+export { addStatus, getAllStatus, updateStatus, deleteStatus };

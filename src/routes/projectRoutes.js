@@ -1,11 +1,12 @@
-const express = require("express");
-const {
+import express from "express";
+import {
   getProjects,
   getProjectById,
   addProject,
   updateProject,
   deleteProject,
-} = require("../controllers/projectController");
+} from "../controllers/projectController.js";
+
 const router = express.Router();
 
 router.get("/", getProjects);
@@ -14,4 +15,4 @@ router.post("/", addProject);
 router.put("/:id", updateProject);
 router.delete("/:id", deleteProject);
 
-module.exports = router;
+export default router;

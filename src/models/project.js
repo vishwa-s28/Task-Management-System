@@ -1,5 +1,5 @@
-module.exports = (sequelize, DataTypes) => {
-  const Project = sequelize.define('Project', {
+const defineProjectModel = (sequelize, DataTypes) => {
+  const Project = sequelize.define("Project", {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -8,10 +8,12 @@ module.exports = (sequelize, DataTypes) => {
 
   Project.associate = (models) => {
     Project.hasMany(models.Task, {
-      foreignKey: 'ProjectId',
-      as: 'tasks',
+      foreignKey: "ProjectId",
+      as: "tasks",
     });
   };
 
   return Project;
 };
+
+export default defineProjectModel;

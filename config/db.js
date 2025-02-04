@@ -1,6 +1,6 @@
-const { Sequelize } = require("sequelize");
-const config = require("./config");
-const { color } = require("console-log-colors");
+import { Sequelize } from "sequelize";
+import config from "./config.js";
+import { color } from "console-log-colors";
 
 const sequelize = new Sequelize({
   dialect: "postgres",
@@ -21,4 +21,4 @@ const sequelize = new Sequelize({
   }
 })();
 
-module.exports = sequelize;
+export default sequelize;

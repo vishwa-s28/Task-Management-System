@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+const defineUserModel = (sequelize, DataTypes) => {
   const User = sequelize.define("User", {
     name: {
       type: DataTypes.STRING,
@@ -35,5 +35,8 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "UserId",
     });
   };
+
   return User;
 };
+
+export default defineUserModel;

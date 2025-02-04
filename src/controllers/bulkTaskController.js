@@ -1,6 +1,7 @@
-const db = require("../sequelize-client");
-const { default: AppError } = require("../utils/appError");
-const sendEmail = require("../utils/mailer");
+import db from "../sequelize-client.js";
+import AppError from "../utils/appError.js";
+import sendEmail from "../utils/mailer.js";
+
 const { Task, User, SubTask } = db;
 
 const createBulkTasks = async (req, res, next) => {
@@ -140,8 +141,5 @@ const deleteBulkTask = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  createBulkTasks,
-  assignTasksToUser,
-  deleteBulkTask,
-};
+export { createBulkTasks, assignTasksToUser, deleteBulkTask };
+

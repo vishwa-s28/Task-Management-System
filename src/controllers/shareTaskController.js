@@ -1,12 +1,12 @@
-const db = require("../sequelize-client");
-const { default: AppError } = require("../utils/appError");
-const sendEmail = require("../utils/mailer");
+import db from "../sequelize-client.js";
+import AppError from "../utils/appError.js";
+import sendEmail from "../utils/mailer.js";
 const { Task, User } = db;
 
 const shareTask = async (req, res, next) => {
   try {
     const { taskId } = req.params;
-    const { userIds } = req.body; 
+    const { userIds } = req.body;
 
     const task = await Task.findByPk(taskId);
     if (!task) {
@@ -20,7 +20,7 @@ const shareTask = async (req, res, next) => {
 
     await task.addSharedWith(users);
 
-    const senderEmail = req.user.email; 
+    const senderEmail = req.user.email;
     const taskName = task.title;
 
     const emailPromises = users.map(async (user) => {
@@ -79,7 +79,4 @@ const getSharedUsers = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  shareTask,
-  getSharedUsers,
-};
+export { shareTask, getSharedUsers };

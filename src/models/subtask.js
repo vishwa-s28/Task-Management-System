@@ -1,34 +1,35 @@
-module.exports = (sequelize, DataTypes) => {
-    const Subtask = sequelize.define('Subtask', {
-      title: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      StatusId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 1, 
-      }
+const defineSubtaskModel = (sequelize, DataTypes) => {
+  const Subtask = sequelize.define("Subtask", {
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    StatusId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+    },
+  });
+
+  Subtask.associate = (models) => {
+    Subtask.belongsTo(models.Task, {
+      foreignKey: "TaskId",
+      as: "task",
+      onDelete: "CASCADE",
     });
 
-    Subtask.associate = (models) => {
-      Subtask.belongsTo(models.Task, {
-        foreignKey: 'TaskId',
-        as: 'task',
-        onDelete: 'CASCADE',
-      });
-  
-      Subtask.belongsTo(models.Status, {
-        foreignKey: 'StatusId',
-        as: 'status',
-      });
-  
-      Subtask.hasMany(models.Reminder, {
-        foreignKey: 'SubtaskId',
-        as: 'reminders',
-      });
-    };
-  
-    return Subtask;
+    Subtask.belongsTo(models.Status, {
+      foreignKey: "StatusId",
+      as: "status",
+    });
+
+    Subtask.hasMany(models.Reminder, {
+      foreignKey: "SubtaskId",
+      as: "reminders",
+    });
   };
-  
+
+  return Subtask;
+};
+
+export default defineSubtaskModel;

@@ -1,11 +1,10 @@
-const express = require("express");
-const { color } = require("console-log-colors");
-const db = require("./sequelize-client");
-const notFound = require("./middlewares/404");
-const globalErrorHandler = require("./middlewares/globalErrorHandler ");
-const generalRoutes = require("./routes/index");
-const { runTaskReminderJob } = require("./utils/taskReminder");
-// const cron = require("node-cron");
+import express from "express";
+import { color } from "console-log-colors";
+import db from "./sequelize-client.js";
+import notFound from "./middlewares/404.js";
+import globalErrorHandler from "./middlewares/globalErrorHandler.js";
+import generalRoutes from "./routes/index.js";
+import { runTaskReminderJob } from "./utils/taskReminder.js";
 
 const app = express();
 app.use(express.json());
@@ -22,9 +21,9 @@ app.use(globalErrorHandler);
 
     app.listen(3000, async () => {
       console.log(color.cyan("Server running on port 3000"));
-      console.log(color.green("⏰ Scheduling task reminder job..."));
-      console.log(color.blue("🔄 Running task reminder job immediately..."));
-      await runTaskReminderJob();
+      // console.log(color.green("⏰ Scheduling task reminder job..."));
+      // console.log(color.blue("🔄 Running task reminder job immediately..."));
+      // await runTaskReminderJob();
 
       // cron.schedule("* * * * *", async () => {
       //   try {

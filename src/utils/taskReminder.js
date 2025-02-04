@@ -1,9 +1,10 @@
-const cron = require("node-cron");
-const sendEmail = require("./mailer");
-const db = require("../sequelize-client");
-const { Op } = require("sequelize");
+import cron from "node-cron";
+import sendEmail from "./mailer.js";
+import db from "../sequelize-client.js";
+import { Op } from "sequelize";
+import { color } from "console-log-colors";
+
 const { Task, User } = db;
-const { color } = require("console-log-colors");
 
 const runTaskReminderJob = async () => {
   try {
@@ -71,4 +72,4 @@ const runTaskReminderJob = async () => {
   }
 };
 
-module.exports = { runTaskReminderJob };
+export { runTaskReminderJob };

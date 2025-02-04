@@ -1,5 +1,5 @@
-const registerSchema = require("../schemas/registerSchema");
-const loginSchema = require("../schemas/loginSchema");
+import registerSchema from "../schemas/registerSchema.js";
+import loginSchema from "../schemas/loginSchema.js";
 
 const validateRegister = (req, res, next) => {
   const { error } = registerSchema.validate(req.body);
@@ -27,7 +27,5 @@ const validateLogin = (req, res, next) => {
   next();
 };
 
-module.exports = {
-  validateRegister,
-  validateLogin,
-};
+export { validateLogin, validateRegister};
+

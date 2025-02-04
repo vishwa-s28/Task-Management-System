@@ -1,9 +1,9 @@
-const bcrypt = require("bcrypt");
-const db = require("../sequelize-client");
-const axios = require("axios");
-const jwt = require("jsonwebtoken");
-const { default: AppError } = require("../utils/appError");
-require("dotenv").config();
+import bcrypt from "bcrypt";
+import db from "../sequelize-client.js";
+import axios from "axios";
+import jwt from "jsonwebtoken";
+import AppError from "../utils/appError.js";
+import "dotenv/config";
 
 const registerUser = async (req, res, next) => {
   try {
@@ -65,7 +65,5 @@ const loginUser = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  registerUser,
-  loginUser,
-};
+export { registerUser, loginUser };
+

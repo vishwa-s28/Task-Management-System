@@ -1,10 +1,16 @@
-const express = require("express");
-const { filterTaskByStatus, filterTaskByDueDate, filterTasksAssignedToUser, filterTasksBySharedStatus } = require("../controllers/filterTaskController");
+import express from "express";
+import {
+  filterTaskByStatus,
+  filterTaskByDueDate,
+  filterTasksAssignedToUser,
+  filterTasksBySharedStatus,
+} from "../controllers/filterTaskController.js";
+
 const router = express.Router();
 
 router.get("/status", filterTaskByStatus);
-router.get("/duaDate", filterTaskByDueDate);
+router.get("/dueDate", filterTaskByDueDate); 
 router.get("/assignee", filterTasksAssignedToUser);
 router.get("/shared", filterTasksBySharedStatus);
 
-module.exports = router;
+export default router;

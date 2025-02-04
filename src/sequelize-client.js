@@ -1,13 +1,13 @@
-require("dotenv").config();
-const { DataTypes } = require("sequelize");
-const sequelize = require("../config/db");
+import "dotenv/config";
+import { DataTypes } from "sequelize";
+import sequelize from "../config/db.js";
 
-const user = require("./models/user");
-const task = require("./models/task");
-const status = require("./models/status");
-const subtask = require("./models/subtask");
-const reminder = require("./models/reminder");
-const project = require("./models/project");
+import user from "./models/user.js";
+import task from "./models/task.js";
+import status from "./models/status.js";
+import subtask from "./models/subtask.js";
+import reminder from "./models/reminder.js";
+import project from "./models/project.js";
 
 const db = {
   sequelize: sequelize,
@@ -31,4 +31,4 @@ Object.values(db).forEach((model) => {
   }
 });
 
-module.exports = db;
+export default db;

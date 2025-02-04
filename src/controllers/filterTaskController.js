@@ -1,5 +1,5 @@
-const db = require("../sequelize-client");
-const { default: AppError } = require("../utils/appError");
+import db from "../sequelize-client.js";
+import AppError from "../utils/appError.js";
 
 const filterTaskByStatus = async (req, res, next) => {
   try {
@@ -141,11 +141,5 @@ const filterTasksBySharedStatus = async (req, res, next) => {
   }
 };
 
+export { filterTaskByDueDate, filterTaskByStatus, filterTasksAssignedToUser, filterTasksBySharedStatus}
 
-
-module.exports = {
-  filterTaskByStatus,
-  filterTaskByDueDate,
-  filterTasksAssignedToUser,
-  filterTasksBySharedStatus
-};

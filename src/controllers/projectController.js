@@ -1,5 +1,5 @@
-const db = require("../sequelize-client");
-const { default: AppError } = require("../utils/appError");
+import db from "../sequelize-client.js";
+import AppError from "../utils/appError.js";
 
 const getProjects = async (req, res, next) => {
   try {
@@ -90,7 +90,7 @@ const deleteProject = async (req, res, next) => {
   }
 };
 
-module.exports = {
+export {
   getProjects,
   getProjectById,
   addProject,

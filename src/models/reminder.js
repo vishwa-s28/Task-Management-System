@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+const defineReminderModel = (sequelize, DataTypes) => {
   const Reminder = sequelize.define("Reminder", {
     reminderTime: {
       type: DataTypes.DATE,
@@ -17,5 +17,8 @@ module.exports = (sequelize, DataTypes) => {
       as: "subtask",
     });
   };
+
   return Reminder;
 };
+
+export default defineReminderModel;

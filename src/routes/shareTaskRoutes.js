@@ -1,8 +1,12 @@
-const express = require("express");
-const { shareTask, getSharedUsers } = require("../controllers/shareTastController");
+import express from "express";
+import {
+  shareTask,
+  getSharedUsers,
+} from "../controllers/shareTaskController.js"; 
+
 const router = express.Router();
 
 router.get("/:taskId", getSharedUsers);
 router.post("/:taskId", shareTask);
 
-module.exports = router;
+export default router;
