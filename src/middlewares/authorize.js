@@ -1,11 +1,11 @@
+import { AUTH_ERRORS } from "../constants/errorMessages.js";
+
 const authorize = (roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
-      console.log(req.user);
-      return res
-        .status(403)
-        .json({ message: "Access denied. Insufficient permissions." });
+      return res.status(403).json({ message: AUTH_ERRORS.INSUFFICIENT_PERMISSIONS });
     }
+
     next();
   };
 };

@@ -1,5 +1,6 @@
 import db from "../sequelize-client.js";
 import AppError from "../utils/appError.js";
+import { TASK_FILTER_ERRORS } from "../constants/errorMessages.js";
 
 const filterTaskByStatus = async (req, res, next) => {
   try {
@@ -7,7 +8,7 @@ const filterTaskByStatus = async (req, res, next) => {
     const { status } = req.query;
 
     if (!status) {
-      throw new AppError("Status is required for filtering.", 400);
+      throw new AppError(TASK_FILTER_ERRORS.MISSING_STATUS, 400);
     }
 
     const tasks = await sequelize.query(
@@ -17,9 +18,11 @@ const filterTaskByStatus = async (req, res, next) => {
         type: sequelize.QueryTypes.SELECT,
       }
     );
+
     if (tasks.length === 0) {
-      throw new AppError("No tasks found for the given status.", 404);
+      throw new AppError(TASK_FILTER_ERRORS.NO_TASKS_FOR_STATUS, 404);
     }
+
     res.status(200).json(tasks);
   } catch (error) {
     next(error);
@@ -32,7 +35,7 @@ const filterTaskByDueDate = async (req, res, next) => {
     const { startDate, endDate } = req.query;
 
     if (!startDate || !endDate) {
-      throw new AppError("Both startDate and endDate are required.", 400);
+      throw new AppError(TASK_FILTER_ERRORS.MISSING_DATE_RANGE, 400);
     }
 
     const tasks = await sequelize.query(
@@ -44,7 +47,7 @@ const filterTaskByDueDate = async (req, res, next) => {
     );
 
     if (tasks.length === 0) {
-      throw new AppError("No tasks found in the given date range.", 404);
+      throw new AppError(TASK_FILTER_ERRORS.NO_TASKS_FOR_DATE_RANGE, 404);
     }
 
     res.status(200).json(tasks);
@@ -59,7 +62,7 @@ const filterTasksAssignedToUser = async (req, res, next) => {
     const { assignedUserId } = req.query;
 
     if (!assignedUserId) {
-      throw new AppError("Assigned User ID is required for filtering.", 400);
+      throw new AppError(TASK_FILTER_ERRORS.MISSING_USER_ID, 400);
     }
 
     const tasks = await sequelize.query(
@@ -88,7 +91,7 @@ const filterTasksAssignedToUser = async (req, res, next) => {
     );
 
     if (tasks.length === 0) {
-      throw new AppError("No tasks found for the given user.", 404);
+      throw new AppError(TASK_FILTER_ERRORS.NO_TASKS_FOR_USER, 404);
     }
 
     res.status(200).json(tasks);
@@ -100,7 +103,7 @@ const filterTasksAssignedToUser = async (req, res, next) => {
 const filterTasksBySharedStatus = async (req, res, next) => {
   try {
     const { sequelize } = db;
-    const { status } = req.query; 
+    const { status } = req.query;
 
     let query;
     if (status === "true") {
@@ -124,7 +127,7 @@ const filterTasksBySharedStatus = async (req, res, next) => {
         )
       `;
     } else {
-      throw new AppError("Invalid shared status, use 'true' or 'false'.", 400);
+      throw new AppError(TASK_FILTER_ERRORS.INVALID_SHARED_STATUS, 400);
     }
 
     const tasks = await sequelize.query(query, {
@@ -132,7 +135,12 @@ const filterTasksBySharedStatus = async (req, res, next) => {
     });
 
     if (tasks.length === 0) {
-      throw new AppError(`No ${status === "true" ? "shared" : "non-shared"} tasks found.`, 404);
+      throw new AppError(
+        status === "true"
+          ? TASK_FILTER_ERRORS.NO_SHARED_TASKS
+          : TASK_FILTER_ERRORS.NO_NON_SHARED_TASKS,
+        404
+      );
     }
 
     res.status(200).json(tasks);
@@ -141,5 +149,9 @@ const filterTasksBySharedStatus = async (req, res, next) => {
   }
 };
 
-export { filterTaskByDueDate, filterTaskByStatus, filterTasksAssignedToUser, filterTasksBySharedStatus}
-
+export {
+  filterTaskByDueDate,
+  filterTaskByStatus,
+  filterTasksAssignedToUser,
+  filterTasksBySharedStatus,
+};

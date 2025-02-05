@@ -1,5 +1,6 @@
 import db from "../sequelize-client.js";
 import AppError from "../utils/appError.js";
+import { PROJECT_ERRORS } from "../constants/errorMessages.js";
 
 const getProjects = async (req, res, next) => {
   try {
@@ -7,7 +8,7 @@ const getProjects = async (req, res, next) => {
     const projects = await Project.findAll();
     res.status(200).json(projects);
   } catch (error) {
-    throw new AppError("Error fetching projects", 500);
+    next(new AppError(PROJECT_ERRORS.FETCH_ERROR, 500));
   }
 };
 
@@ -18,7 +19,7 @@ const getProjectById = async (req, res, next) => {
     const project = await Project.findByPk(projectId);
 
     if (!project) {
-      throw new AppError("Project not found", 404);
+      throw new AppError(PROJECT_ERRORS.PROJECT_NOT_FOUND, 404);
     }
 
     res.status(200).json(project);
@@ -33,7 +34,7 @@ const addProject = async (req, res, next) => {
     const { name } = req.body;
 
     if (!name) {
-      throw new AppError("Project name is required", 400);
+      throw new AppError(PROJECT_ERRORS.NAME_REQUIRED, 400);
     }
 
     const newProject = await Project.create({ name });
@@ -55,7 +56,7 @@ const updateProject = async (req, res, next) => {
     const project = await Project.findByPk(projectId);
 
     if (!project) {
-      throw new AppError("Project not found", 404);
+      throw new AppError(PROJECT_ERRORS.PROJECT_NOT_FOUND, 404);
     }
 
     project.name = name || project.name;
@@ -66,8 +67,7 @@ const updateProject = async (req, res, next) => {
       project,
     });
   } catch (error) {
-    console.error("Error updating project:", error);
-    throw new AppError("Error updating project", 500);
+    next(new AppError(PROJECT_ERRORS.UPDATE_ERROR, 500));
   }
 };
 
@@ -79,7 +79,7 @@ const deleteProject = async (req, res, next) => {
     const project = await Project.findByPk(projectId);
 
     if (!project) {
-      throw new AppError("Project not found", 404);
+      throw new AppError(PROJECT_ERRORS.PROJECT_NOT_FOUND, 404);
     }
 
     await project.destroy();

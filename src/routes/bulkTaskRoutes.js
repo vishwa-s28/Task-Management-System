@@ -4,11 +4,12 @@ import {
   assignTasksToUser,
   deleteBulkTask,
 } from "../controllers/bulkTaskController.js";
+import { BULK_TASKS_ENDPOINTS } from "../constants/endpoints.js";
 
 const router = express.Router();
 
-router.post("/create", createBulkTasks);
-router.post("/assign/:userId", assignTasksToUser);
-router.delete("/delete", deleteBulkTask);
+router.post(BULK_TASKS_ENDPOINTS.CREATE, createBulkTasks);
+router.post(BULK_TASKS_ENDPOINTS.ASSIGN, assignTasksToUser);
+router.delete(BULK_TASKS_ENDPOINTS.DELETE, deleteBulkTask);
 
 export default router;

@@ -1,7 +1,7 @@
 import db from "../sequelize-client.js";
 import AppError from "../utils/appError.js";
 import sendEmail from "../utils/mailer.js";
-
+import { TASK_ERRORS } from "../constants/errorMessages.js";
 const { Task, User, SubTask } = db;
 
 const createBulkTasks = async (req, res, next) => {
@@ -9,10 +9,7 @@ const createBulkTasks = async (req, res, next) => {
     const tasks = req.body.tasks;
 
     if (!Array.isArray(tasks) || tasks.length === 0) {
-      throw new AppError(
-        "Invalid input. Provide a non-empty array of tasks.",
-        400
-      );
+      throw new AppError(TASK_ERRORS.INVALID_TASK_ARRAY, 400);
     }
 
     const createdTasks = [];
@@ -20,7 +17,10 @@ const createBulkTasks = async (req, res, next) => {
       const { title, description, dueDate, ProjectId } = taskData;
 
       if (!title || typeof title !== "string") {
-        throw new AppError(`Invalid task title: ${title}`, 400);
+        throw new AppError(
+          TASK_ERRORS.INVALID_TASK_TITLE.replace("{title}", title),
+          400
+        );
       }
 
       const createdTask = await Task.create({
@@ -48,15 +48,12 @@ const assignTasksToUser = async (req, res, next) => {
     const { taskIds } = req.body;
 
     if (!userId || !Array.isArray(taskIds) || taskIds.length === 0) {
-      throw new AppError(
-        "Invalid input. Provide a userId and a non-empty array of taskIds.",
-        400
-      );
+      throw new AppError(TASK_ERRORS.INVALID_ASSIGN_INPUT, 400);
     }
 
     const user = await User.findByPk(userId);
     if (!user) {
-      throw new AppError("User not found", 404);
+      throw new AppError(TASK_ERRORS.USER_NOT_FOUND, 404);
     }
 
     const tasks = await Task.findAll({ where: { id: taskIds } });
@@ -67,7 +64,10 @@ const assignTasksToUser = async (req, res, next) => {
         (taskId) => !foundTaskIds.includes(taskId)
       );
       throw new AppError(
-        `Tasks not found for IDs: ${missingTaskIds.join(", ")}`,
+        TASK_ERRORS.TASKS_NOT_FOUND.replace(
+          "{taskIds}",
+          missingTaskIds.join(", ")
+        ),
         404
       );
     }
@@ -95,7 +95,7 @@ const assignTasksToUser = async (req, res, next) => {
         user.email,
         `Task Assigned: ${taskName}`,
         emailHtml,
-        true 
+        true
       );
     }
 
@@ -114,10 +114,7 @@ const deleteBulkTask = async (req, res, next) => {
     const { taskIds } = req.body;
 
     if (!Array.isArray(taskIds) || taskIds.length === 0) {
-      throw new AppError(
-        "Invalid input. Provide a non-empty array of task IDs.",
-        400
-      );
+      throw new AppError(TASK_ERRORS.INVALID_TASK_ARRAY, 400);
     }
 
     await SubTask.destroy({
@@ -127,10 +124,7 @@ const deleteBulkTask = async (req, res, next) => {
     const deletedTasks = await Task.destroy({ where: { id: taskIds } });
 
     if (deletedTasks === 0) {
-      throw new AppError(
-        "No tasks found to delete with the provided IDs.",
-        404
-      );
+      throw new AppError(TASK_ERRORS.NO_TASKS_TO_DELETE, 404);
     }
 
     res.status(200).json({
@@ -142,4 +136,3 @@ const deleteBulkTask = async (req, res, next) => {
 };
 
 export { createBulkTasks, assignTasksToUser, deleteBulkTask };
-

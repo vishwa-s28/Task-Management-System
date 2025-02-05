@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { DataTypes } from "sequelize";
-import sequelize from "../config/db.js";
+import sequelize from "./config/db.js";
 
 import user from "./models/user.js";
 import task from "./models/task.js";

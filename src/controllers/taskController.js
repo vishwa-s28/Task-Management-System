@@ -1,5 +1,6 @@
 import db from "../sequelize-client.js";
 import AppError from "../utils/appError.js";
+import { TASK_ERRORS, TASK_MESSAGES, PROJECT_ERRORS } from "../constants/errorMessages.js";
 
 const { Task, User, Status, SubTask, Reminder, Project } = db;
 
@@ -14,7 +15,7 @@ const createTask = async (req, res, next) => {
     });
 
     res.status(201).json({
-      message: "Task created successfully",
+      message: TASK_MESSAGES.CREATE_SUCCESS,
       task,
     });
   } catch (error) {
@@ -99,7 +100,7 @@ const getTaskById = async (req, res, next) => {
     });
 
     if (!task) {
-      throw new AppError("Task not found", 404);
+      throw new AppError(TASK_ERRORS.TASK_NOT_FOUND, 404);
     }
 
     res.status(200).json(task);
@@ -116,7 +117,7 @@ const updateTask = async (req, res, next) => {
     const task = await Task.findOne({ where: { id: taskId } });
 
     if (!task) {
-      throw new AppError("Task not found", 404);
+      throw new AppError(TASK_ERRORS.TASK_NOT_FOUND, 404);
     }
 
     task.title = title || task.title;
@@ -129,7 +130,7 @@ const updateTask = async (req, res, next) => {
     await task.save();
 
     res.status(200).json({
-      message: "Task updated successfully",
+      message: TASK_MESSAGES.UPDATE_SUCCESS,
       task,
     });
   } catch (error) {
@@ -143,13 +144,13 @@ const deleteTask = async (req, res, next) => {
     const task = await Task.findOne({ where: { id: taskId } });
 
     if (!task) {
-      throw new AppError("Task not found", 404);
+      throw new AppError(TASK_ERRORS.TASK_NOT_FOUND, 404);
     }
 
     await task.destroy();
 
     res.status(200).json({
-      message: "Task deleted successfully",
+      message: TASK_MESSAGES.DELETE_SUCCESS,
     });
   } catch (error) {
     next(error);
@@ -163,19 +164,19 @@ const moveTask = async (req, res, next) => {
 
     const project = await Project.findByPk(ProjectId);
     if (!project) {
-      throw new AppError("Project not found", 404);
+      throw new AppError(PROJECT_ERRORS.PROJECT_NOT_FOUND, 404);
     }
 
     const task = await Task.findByPk(id);
     if (!task) {
-      throw new AppError("Task not found", 404);
+      throw new AppError(TASK_ERRORS.TASK_NOT_FOUND, 404);
     }
 
     task.ProjectId = ProjectId;
     await task.save();
 
     res.status(200).json({
-      message: "Task moved successfully",
+      message: TASK_MESSAGES.MOVE_SUCCESS,
       task,
     });
   } catch (error) {

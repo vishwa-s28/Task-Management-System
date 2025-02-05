@@ -1,24 +1,25 @@
 import express from "express";
-import authRoutes from "./authRoutes.js";
-import taskRoutes from "./taskRoutes.js";
-import subTaskRoutes from "./subTaskRoutes.js";
-import shareTaskRoutes from "./shareTaskRoutes.js";
-import projectRoutes from "./projectRoutes.js";
-import statusRoutes from "./statusRoutes.js";
-import filterTaskRoutes from "./filterTaskRoutes.js";
-import bulkTaskRoutes from "./bulkTaskRoutes.js";
-import authorize from "../middlewares/authorize.js";
 import authenticate from "../middlewares/authenticate.js";
+import authorize from "../middlewares/authorize.js";
+import authRoutes from "../routes/authRoutes.js";
+import taskRoutes from "../routes/taskRoutes.js";
+import projectRoutes from "../routes/projectRoutes.js";
+import subTaskRoutes from "../routes/subTaskRoutes.js";
+import statusRoutes from "../routes/statusRoutes.js";
+import shareTaskRoutes from "../routes/shareTaskRoutes.js";
+import filterTaskRoutes from "../routes/filterTaskRoutes.js";
+import bulkTaskRoutes from "../routes/bulkTaskRoutes.js";
+import ENDPOINTS from "../constants/endpoints.js";
 
 const router = express.Router();
 
-router.use("/auth", authRoutes);
-router.use("/task", authenticate, taskRoutes);
-router.use("/projects", authenticate, authorize(["admin"]), projectRoutes);
-router.use("/task/subtask", authenticate, authorize(["admin"]), subTaskRoutes);
-router.use("/status", authenticate, authorize(["admin"]), statusRoutes);
-router.use("/task/share", authenticate, shareTaskRoutes);
-router.use("/filter-task", authenticate, filterTaskRoutes);
-router.use("/bulk-tasks", authenticate, authorize(["admin"]), bulkTaskRoutes);
+router.use(ENDPOINTS.AUTH, authRoutes);
+router.use(ENDPOINTS.TASK, authenticate, taskRoutes);
+router.use(ENDPOINTS.PROJECTS, authenticate, authorize(["admin"]), projectRoutes);
+router.use(ENDPOINTS.SUBTASK, authenticate, authorize(["admin"]), subTaskRoutes);
+router.use(ENDPOINTS.STATUS, authenticate, authorize(["admin"]), statusRoutes);
+router.use(ENDPOINTS.SHARE_TASK, authenticate, shareTaskRoutes);
+router.use(ENDPOINTS.FILTER_TASK, authenticate, filterTaskRoutes);
+router.use(ENDPOINTS.BULK_TASKS, authenticate, authorize(["admin"]), bulkTaskRoutes);
 
 export default router;

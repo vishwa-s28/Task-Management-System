@@ -1,6 +1,8 @@
 import db from "../sequelize-client.js";
 import AppError from "../utils/appError.js";
 import sendEmail from "../utils/mailer.js";
+import { TASK_ERRORS } from "../constants/errorMessages.js"; 
+
 const { Task, User } = db;
 
 const shareTask = async (req, res, next) => {
@@ -8,18 +10,27 @@ const shareTask = async (req, res, next) => {
     const { taskId } = req.params;
     const { userIds } = req.body;
 
+    // Validate input
+    if (!userIds || !Array.isArray(userIds) || userIds.length === 0) {
+      throw new AppError(TASK_ERRORS.INVALID_ASSIGN_INPUT, 400);
+    }
+
+    // Fetch task
     const task = await Task.findByPk(taskId);
     if (!task) {
-      throw new AppError("Task not found", 404);
+      throw new AppError(TASK_ERRORS.TASKS_NOT_FOUND.replace("{taskIds}", taskId), 404);
     }
 
+    // Fetch users
     const users = await User.findAll({ where: { id: userIds } });
-    if (!users.length) {
-      throw new AppError("Users not found", 404);
+    if (users.length === 0) {
+      throw new AppError(TASK_ERRORS.USER_NOT_FOUND, 404);
     }
 
+    // Share task with users
     await task.addSharedWith(users);
 
+    // Send emails to users
     const senderEmail = req.user.email;
     const taskName = task.title;
 
@@ -31,15 +42,15 @@ const shareTask = async (req, res, next) => {
           <p>Please log in to your account to view the task details.</p>
           <p style="margin-top: 20px;">Best regards,</p>
           <p><strong>Task Management Team</strong></p>
-          <hr />
+          <hr style="border: none; border-top: 1px solid #ddd;" />
         </div>
       `;
-
       return sendEmail(user.email, `Task Shared: ${taskName}`, emailHtml, true);
     });
 
     await Promise.all(emailPromises);
 
+    // Respond with success message
     res.status(200).json({
       message: "Task shared successfully",
       sharedWith: users.map((user) => ({ id: user.id, name: user.name })),
@@ -53,6 +64,7 @@ const getSharedUsers = async (req, res, next) => {
   try {
     const { taskId } = req.params;
 
+    // Fetch task along with shared users
     const task = await Task.findByPk(taskId, {
       include: [
         {
@@ -64,9 +76,10 @@ const getSharedUsers = async (req, res, next) => {
     });
 
     if (!task) {
-      throw new AppError("Task not found", 404);
+      throw new AppError(TASK_ERRORS.TASKS_NOT_FOUND.replace("{taskIds}", taskId), 404);
     }
 
+    // Respond with shared user data
     res.status(200).json({
       taskId: task.id,
       sharedWith: task.sharedWith,

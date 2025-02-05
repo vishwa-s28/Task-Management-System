@@ -1,6 +1,8 @@
 import db from "../sequelize-client.js";
+import AppError from "../utils/appError.js";
+import { SUBTASK_ERRORS, SUBTASK_MESSAGES, TASK_ERRORS } from "../constants/errorMessages.js";
 
-const addSubtask = async (req, res) => {
+const addSubtask = async (req, res, next) => {
   try {
     const { taskId } = req.params;
     const { title } = req.body;
@@ -8,7 +10,11 @@ const addSubtask = async (req, res) => {
 
     const task = await Task.findByPk(taskId);
     if (!task) {
-      throw new AppError("Task not found", 404);
+      throw new AppError(TASK_ERRORS.TASK_NOT_FOUND, 404);
+    }
+
+    if (!title) {
+      throw new AppError(SUBTASK_ERRORS.TITLE_REQUIRED, 400);
     }
 
     const subtask = await SubTask.create({
@@ -17,7 +23,7 @@ const addSubtask = async (req, res) => {
     });
 
     res.status(201).json({
-      message: "Subtask created successfully",
+      message: SUBTASK_MESSAGES.ADD_SUCCESS,
       subtask,
     });
   } catch (error) {
@@ -25,14 +31,14 @@ const addSubtask = async (req, res) => {
   }
 };
 
-const getSubtasks = async (req, res) => {
+const getSubtasks = async (req, res, next) => {
   try {
     const { taskId } = req.params;
     const { SubTask, Task, Status } = db;
 
     const task = await Task.findByPk(taskId);
     if (!task) {
-      throw new AppError("Task not found", 404);
+      throw new AppError(TASK_ERRORS.TASK_NOT_FOUND, 404);
     }
 
     const subtasks = await SubTask.findAll({
@@ -47,6 +53,7 @@ const getSubtasks = async (req, res) => {
     });
 
     res.status(200).json({
+      message: SUBTASK_MESSAGES.FETCH_SUCCESS,
       task,
       subtasks,
     });
