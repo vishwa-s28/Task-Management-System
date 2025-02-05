@@ -32,9 +32,6 @@ const shareTask = async (req, res, next) => {
           <p style="margin-top: 20px;">Best regards,</p>
           <p><strong>Task Management Team</strong></p>
           <hr />
-          <p style="font-size: 0.9em; color: #666;">
-            Disclaimer: This email is intended solely for the recipient. If you are not the intended recipient, please notify the sender and delete this email.
-          </p>
         </div>
       `;
 

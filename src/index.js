@@ -1,14 +1,21 @@
 import express from "express";
+import helmet from "helmet";
 import { color } from "console-log-colors";
 import db from "./sequelize-client.js";
 import notFound from "./middlewares/404.js";
 import globalErrorHandler from "./middlewares/globalErrorHandler.js";
 import generalRoutes from "./routes/index.js";
 import { runTaskReminderJob } from "./utils/taskReminder.js";
+import inputSanitization from "./middlewares/inputSanitization.js";
+import rateLimiter from "./middlewares/rateLimiter.js";
 
 const app = express();
-app.use(express.json());
 
+// Helps mitigate XSS attacks by setting a Content-Security-Policy header.
+app.use(helmet());
+app.use(express.json());
+app.use(inputSanitization);
+app.use(rateLimiter);
 app.use("/", generalRoutes);
 app.use(notFound);
 app.use(globalErrorHandler);
@@ -21,20 +28,9 @@ app.use(globalErrorHandler);
 
     app.listen(3000, async () => {
       console.log(color.cyan("Server running on port 3000"));
-      // console.log(color.green("⏰ Scheduling task reminder job..."));
-      // console.log(color.blue("🔄 Running task reminder job immediately..."));
-      // await runTaskReminderJob();
-
-      // cron.schedule("* * * * *", async () => {
-      //   try {
-      //     const currentTime = new Date().toLocaleString();
-      //     console.log(currentTime)
-      //     console.log(color.yellow(`Scheduled task reminder job running at ${currentTime}...`));
-      //     await runTaskReminderJob();
-      //   } catch (err) {
-      //     console.error(color.red(`Error running task reminder job: ${err.message}`));
-      //   }
-      // })
+      console.log(color.green("⏰ Scheduling task reminder job..."));
+      console.log(color.blue("🔄 Running task reminder job immediately..."));
+      await runTaskReminderJob();
     });
   } catch (error) {
     console.error(
@@ -43,3 +39,16 @@ app.use(globalErrorHandler);
     process.exit(1);
   }
 })();
+
+// cron.schedule("0 9 * * *", async () => {
+//   try {
+//     const currentTime = new Date().toLocaleString();
+//     console.log(currentTime);
+//     console.log(
+//       color.yellow(`Scheduled task reminder job running at ${currentTime}...`)
+//     );
+//     await runTaskReminderJob();
+//   } catch (err) {
+//     console.error(color.red(`Error running task reminder job: ${err.message}`));
+//   }
+// });

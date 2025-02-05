@@ -34,6 +34,10 @@ const defineUserModel = (sequelize, DataTypes) => {
       as: "sharedTasks",
       foreignKey: "UserId",
     });
+    User.hasMany(models.Reminder, {
+      foreignKey: "UserId",
+      as: "reminders",
+    });
   };
 
   return User;

@@ -22,11 +22,6 @@ const defineSubtaskModel = (sequelize, DataTypes) => {
       foreignKey: "StatusId",
       as: "status",
     });
-
-    Subtask.hasMany(models.Reminder, {
-      foreignKey: "SubtaskId",
-      as: "reminders",
-    });
   };
 
   return Subtask;

@@ -1,8 +1,9 @@
 const defineReminderModel = (sequelize, DataTypes) => {
   const Reminder = sequelize.define("Reminder", {
-    reminderTime: {
-      type: DataTypes.DATE,
+    status: {
+      type: DataTypes.ENUM("Pending", "Sent"),
       allowNull: false,
+      defaultValue: "Pending",
     },
   });
 
@@ -12,9 +13,9 @@ const defineReminderModel = (sequelize, DataTypes) => {
       as: "task",
     });
 
-    Reminder.belongsTo(models.SubTask, {
-      foreignKey: "SubtaskId",
-      as: "subtask",
+    Reminder.belongsTo(models.User, {
+      foreignKey: "UserId",
+      as: "user",
     });
   };
 
