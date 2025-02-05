@@ -8,6 +8,7 @@ import generalRoutes from "./routes/index.js";
 import { runTaskReminderJob } from "./utils/taskReminder.js";
 import inputSanitization from "./middlewares/inputSanitization.js";
 import rateLimiter from "./middlewares/rateLimiter.js";
+import compression from "compression";
 
 const app = express();
 
@@ -16,7 +17,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(inputSanitization);
 app.use(rateLimiter);
-app.use("/", generalRoutes);
+app.use("/", compression(), generalRoutes);
 app.use(notFound);
 app.use(globalErrorHandler);
 

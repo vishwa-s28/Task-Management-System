@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"vishwa satasiya\",\r\n    \"email\": \"vishwa.s@sarvadhi.com\",\r\n    \"password\": \"abc123\",\r\n    \"role\": \"admin\"\r\n}",
+							"raw": "{\r\n    \"name\": \"kashish prasad\",\r\n    \"email\": \"kashish.p@sarvadhi.com\",\r\n    \"password\": \"abc123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -201,6 +201,210 @@
 		{
 			"name": "Task",
 			"item": [
+				{
+					"name": "Filter Task",
+					"item": [
+						{
+							"name": "by assignee",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTgwNjA2LCJleHAiOjE3Mzg1ODQyMDZ9.Q9VyayRRZGy23nc_llRGKSm4RxZwslMEHdYdo6S4VaA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/filter-task/assignee?assignedUserId=16",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"filter-task",
+										"assignee"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2024-12-10",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2025-12-10",
+											"disabled": true
+										},
+										{
+											"key": "assignedUserId",
+											"value": "16"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "filter task by assigneed user",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/filterTask/assignee?assignedUserId=16",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"filterTask",
+												"assignee"
+											],
+											"query": [
+												{
+													"key": "startDate",
+													"value": "2024-12-10",
+													"disabled": true
+												},
+												{
+													"key": "endDate",
+													"value": "2025-12-10",
+													"disabled": true
+												},
+												{
+													"key": "assignedUserId",
+													"value": "16"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "622"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"26e-xeZf44nlsyhe8cgOdIMsOJAbV8A\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 03 Feb 2025 11:17:59 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 15,\n        \"title\": \"Task 1\",\n        \"description\": \"create registration form\",\n        \"dueDate\": \"2025-02-13T00:00:00.000Z\",\n        \"createdAt\": \"2025-02-03T07:24:23.689Z\",\n        \"updatedAt\": \"2025-02-03T08:26:36.717Z\",\n        \"UserId\": 16,\n        \"StatusId\": 1,\n        \"ProjectId\": 4,\n        \"assignedusername\": \"vishwa satasiya\",\n        \"subtasks\": [\n            {\n                \"id\": 4,\n                \"title\": \"subTask1\"\n            },\n            {\n                \"id\": 6,\n                \"title\": \"subTask2\"\n            }\n        ]\n    },\n    {\n        \"id\": 16,\n        \"title\": \"Task 2\",\n        \"description\": \"create login form\",\n        \"dueDate\": \"2025-02-15T00:00:00.000Z\",\n        \"createdAt\": \"2025-02-03T07:26:41.334Z\",\n        \"updatedAt\": \"2025-02-03T08:27:24.888Z\",\n        \"UserId\": 16,\n        \"StatusId\": 1,\n        \"ProjectId\": 4,\n        \"assignedusername\": \"vishwa satasiya\",\n        \"subtasks\": [\n            {\n                \"id\": 5,\n                \"title\": \"subTask1\"\n            }\n        ]\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "by status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/filterTask/status?status=In Progress",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"filterTask",
+										"status"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "In Progress"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "by shared status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/filterTask/shared?status=true",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"filterTask",
+										"shared"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "by dueDate",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/filterTask/duaDate?startDate=2024-12-10&endDate=2025-12-10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"filterTask",
+										"duaDate"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2024-12-10"
+										},
+										{
+											"key": "endDate",
+											"value": "2025-12-10"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
 				{
 					"name": "delete task",
 					"request": {
@@ -582,7 +786,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY3NTgwLCJleHAiOjE3Mzg1NzExODB9.wAHiKOgn2dfCobM8a_HT-oL6mAyD9kIHmtSB5gIYyDE",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NjUxNzYzLCJleHAiOjE3Mzg2NTUzNjN9.2g0RLB9dAuGi9A-99Efwc5LIF-mCZjuvrXGMsQM-mJs",
 									"type": "string"
 								}
 							]
@@ -599,7 +803,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/task",
+							"raw": "http://localhost:3000/task?page=3&limit=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -607,6 +811,16 @@
 							"port": "3000",
 							"path": [
 								"task"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "3"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -672,6 +886,78 @@
 							],
 							"cookie": [],
 							"body": "[\n    {\n        \"id\": 17,\n        \"title\": \"Task 2\",\n        \"description\": \"create admin panel\",\n        \"dueDate\": \"2025-02-17T00:00:00.000Z\",\n        \"StatusId\": 1,\n        \"UserId\": 16,\n        \"createdAt\": \"2025-02-03T07:27:01.937Z\",\n        \"updatedAt\": \"2025-02-03T07:27:01.937Z\",\n        \"ProjectId\": null,\n        \"user\": {\n            \"name\": \"vishwa satasiya\",\n            \"email\": \"vishwa.s@sarvadhi.com\"\n        },\n        \"status\": {\n            \"name\": \"pending\"\n        },\n        \"subtasks\": [],\n        \"reminders\": []\n    },\n    {\n        \"id\": 18,\n        \"title\": \"Task 2\",\n        \"description\": \"create user panel\",\n        \"dueDate\": \"2025-02-20T00:00:00.000Z\",\n        \"StatusId\": 1,\n        \"UserId\": 16,\n        \"createdAt\": \"2025-02-03T07:27:11.920Z\",\n        \"updatedAt\": \"2025-02-03T07:27:11.920Z\",\n        \"ProjectId\": null,\n        \"user\": {\n            \"name\": \"vishwa satasiya\",\n            \"email\": \"vishwa.s@sarvadhi.com\"\n        },\n        \"status\": {\n            \"name\": \"pending\"\n        },\n        \"subtasks\": [],\n        \"reminders\": []\n    },\n    {\n        \"id\": 15,\n        \"title\": \"Task 1\",\n        \"description\": \"create registration form\",\n        \"dueDate\": \"2025-02-13T00:00:00.000Z\",\n        \"StatusId\": 1,\n        \"UserId\": 16,\n        \"createdAt\": \"2025-02-03T07:24:23.689Z\",\n        \"updatedAt\": \"2025-02-03T07:24:23.689Z\",\n        \"ProjectId\": null,\n        \"user\": {\n            \"name\": \"vishwa satasiya\",\n            \"email\": \"vishwa.s@sarvadhi.com\"\n        },\n        \"status\": {\n            \"name\": \"pending\"\n        },\n        \"subtasks\": [],\n        \"reminders\": []\n    },\n    {\n        \"id\": 16,\n        \"title\": \"Task 2\",\n        \"description\": \"create login form\",\n        \"dueDate\": \"2025-02-15T00:00:00.000Z\",\n        \"StatusId\": 1,\n        \"UserId\": 16,\n        \"createdAt\": \"2025-02-03T07:26:41.334Z\",\n        \"updatedAt\": \"2025-02-03T07:26:41.334Z\",\n        \"ProjectId\": null,\n        \"user\": {\n            \"name\": \"vishwa satasiya\",\n            \"email\": \"vishwa.s@sarvadhi.com\"\n        },\n        \"status\": {\n            \"name\": \"pending\"\n        },\n        \"subtasks\": [],\n        \"reminders\": []\n    }\n]"
+						},
+						{
+							"name": "fetch with pagination",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/task?page=3&limit=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"task"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "3"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "431"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1af-gVHEy4VFWviEa7c4SWxqmoOwyx8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 04 Feb 2025 06:44:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 17,\n            \"title\": \"Task 3\",\n            \"description\": \"create admin panel\",\n            \"dueDate\": \"2025-02-17T00:00:00.000Z\",\n            \"StatusId\": 2,\n            \"UserId\": 16,\n            \"ProjectId\": 6,\n            \"createdAt\": \"2025-02-03T07:27:01.937Z\",\n            \"updatedAt\": \"2025-02-03T08:27:39.252Z\",\n            \"user\": {\n                \"name\": \"vishwa satasiya\",\n                \"email\": \"vishwa.s@sarvadhi.com\"\n            },\n            \"status\": {\n                \"name\": \"In Progress\"\n            },\n            \"subtasks\": [],\n            \"reminders\": []\n        }\n    ],\n    \"pagination\": {\n        \"totalTasks\": 4,\n        \"totalPages\": 4,\n        \"currentPage\": 3,\n        \"tasksPerPage\": 1\n    }\n}"
 						}
 					]
 				},
@@ -761,14 +1047,14 @@
 					]
 				},
 				{
-					"name": "New Request",
+					"name": "move task",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoiamFyaXdhbGF5YWFkbGV5QGdtYWlsLmNvbSIsImlhdCI6MTczODc0NzM0NywiZXhwIjoxNzM4NzUwOTQ3fQ.gOLU8Wu41mBYY6Tpr5dC8AwaAq88c49SwBNkABZV58A",
 									"type": "string"
 								}
 							]
@@ -777,7 +1063,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ProjectId\": 4\r\n}",
+							"raw": "{\r\n    \"ProjectId\": 7\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -785,7 +1071,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/task/15/move",
+							"raw": "http://localhost:3000/task/28/move",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -793,7 +1079,7 @@
 							"port": "3000",
 							"path": [
 								"task",
-								"15",
+								"28",
 								"move"
 							]
 						}
@@ -1255,7 +1541,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoiamFyaXdhbGF5YWFkbGV5QGdtYWlsLmNvbSIsImlhdCI6MTczODc0NzM0NywiZXhwIjoxNzM4NzUwOTQ3fQ.gOLU8Wu41mBYY6Tpr5dC8AwaAq88c49SwBNkABZV58A",
 									"type": "string"
 								}
 							]
@@ -1338,7 +1624,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoiamFyaXdhbGF5YWFkbGV5QGdtYWlsLmNvbSIsImlhdCI6MTczODc0NzM0NywiZXhwIjoxNzM4NzUwOTQ3fQ.gOLU8Wu41mBYY6Tpr5dC8AwaAq88c49SwBNkABZV58A",
 									"type": "string"
 								}
 							]
@@ -1346,7 +1632,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/projects/5",
+							"raw": "http://localhost:3000/projects/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1354,7 +1640,7 @@
 							"port": "3000",
 							"path": [
 								"projects",
-								"5"
+								"4"
 							]
 						}
 					},
@@ -1423,7 +1709,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJ2aXNod2Euc0BzYXJ2YWRoaS5jb20iLCJpYXQiOjE3MzgzOTExOTAsImV4cCI6MTczODM5NDc5MH0.s_asPsbS6Y32mLa6Q8zNkzJpUO-YaMgC_j41n-1Nt2w",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoiamFyaXdhbGF5YWFkbGV5QGdtYWlsLmNvbSIsImlhdCI6MTczODc0NzM0NywiZXhwIjoxNzM4NzUwOTQ3fQ.gOLU8Wu41mBYY6Tpr5dC8AwaAq88c49SwBNkABZV58A",
 									"type": "string"
 								}
 							]
@@ -1432,7 +1718,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Social Networking\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Jariwala Diamonds\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1524,7 +1810,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoiamFyaXdhbGF5YWFkbGV5QGdtYWlsLmNvbSIsImlhdCI6MTczODc0NzM0NywiZXhwIjoxNzM4NzUwOTQ3fQ.gOLU8Wu41mBYY6Tpr5dC8AwaAq88c49SwBNkABZV58A",
 									"type": "string"
 								}
 							]
@@ -1533,7 +1819,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"TMS\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Task Management System\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1541,7 +1827,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/projects/5",
+							"raw": "http://localhost:3000/projects/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1549,7 +1835,7 @@
 							"port": "3000",
 							"path": [
 								"projects",
-								"5"
+								"6"
 							]
 						}
 					},
@@ -1798,7 +2084,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoiamFyaXdhbGF5YWFkbGV5QGdtYWlsLmNvbSIsImlhdCI6MTczODc0NzM0NywiZXhwIjoxNzM4NzUwOTQ3fQ.gOLU8Wu41mBYY6Tpr5dC8AwaAq88c49SwBNkABZV58A",
 									"type": "string"
 								}
 							]
@@ -1807,7 +2093,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"subTask1\"\r\n}",
+							"raw": "{\r\n    \"title\": \"subTask-1-28\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1815,7 +2101,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/task/subtask/15",
+							"raw": "http://localhost:3000/task/subtask/28",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1824,7 +2110,7 @@
 							"path": [
 								"task",
 								"subtask",
-								"15"
+								"28"
 							]
 						}
 					},
@@ -1903,7 +2189,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoiamFyaXdhbGF5YWFkbGV5QGdtYWlsLmNvbSIsImlhdCI6MTczODc0NzM0NywiZXhwIjoxNzM4NzUwOTQ3fQ.gOLU8Wu41mBYY6Tpr5dC8AwaAq88c49SwBNkABZV58A",
 									"type": "string"
 								}
 							]
@@ -1911,7 +2197,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/task/subtask/15",
+							"raw": "http://localhost:3000/task/subtask/28",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1920,7 +2206,7 @@
 							"path": [
 								"task",
 								"subtask",
-								"15"
+								"28"
 							]
 						}
 					},
@@ -1988,14 +2274,14 @@
 			"name": "Share task",
 			"item": [
 				{
-					"name": "share task",
+					"name": "share a task to many users",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NjcxMzE4LCJleHAiOjE3Mzg2NzQ5MTh9.OAPYP6ab_yECnFxxM3M1m8rLrV32ZtMDpkVKWDvFwlM",
 									"type": "string"
 								}
 							]
@@ -2004,7 +2290,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userIds\": [16,17]\r\n}",
+							"raw": "{\r\n    \"userIds\": [19]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2012,7 +2298,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/task/share/15",
+							"raw": "http://localhost:3000/task/share/17",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2021,7 +2307,7 @@
 							"path": [
 								"task",
 								"share",
-								"15"
+								"17"
 							]
 						}
 					},
@@ -2103,7 +2389,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImVtYWlsIjoidmlzaHdhLnNAc2FydmFkaGkuY29tIiwiaWF0IjoxNzM4NTY5NTA3LCJleHAiOjE3Mzg1NzMxMDd9.2Crmfgf6BpqUAOST8duHZizm6EYpIcHnfssIr8CfGKo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoiamFyaXdhbGF5YWFkbGV5QGdtYWlsLmNvbSIsImlhdCI6MTczODc0NzM0NywiZXhwIjoxNzM4NzUwOTQ3fQ.gOLU8Wu41mBYY6Tpr5dC8AwaAq88c49SwBNkABZV58A",
 									"type": "string"
 								}
 							]
@@ -2120,7 +2406,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/task/share/15",
+							"raw": "http://localhost:3000/task/share/31",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2129,7 +2415,7 @@
 							"path": [
 								"task",
 								"share",
-								"15"
+								"31"
 							]
 						}
 					},
@@ -2197,6 +2483,513 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"taskId\": 15,\n    \"sharedWith\": [\n        {\n            \"id\": 16,\n            \"name\": \"vishwa satasiya\",\n            \"email\": \"vishwa.s@sarvadhi.com\",\n            \"UserTasks\": {\n                \"createdAt\": \"2025-02-03T08:41:45.802Z\",\n                \"updatedAt\": \"2025-02-03T08:41:45.802Z\",\n                \"UserId\": 16,\n                \"TaskId\": 15\n            }\n        },\n        {\n            \"id\": 17,\n            \"name\": \"yaadley jariwala\",\n            \"email\": \"yaadley.j@sarvadhi.com\",\n            \"UserTasks\": {\n                \"createdAt\": \"2025-02-03T08:41:45.802Z\",\n                \"updatedAt\": \"2025-02-03T08:41:45.802Z\",\n                \"UserId\": 17,\n                \"TaskId\": 15\n            }\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Bulk Task",
+			"item": [
+				{
+					"name": "create bulk task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoiamFyaXdhbGF5YWFkbGV5QGdtYWlsLmNvbSIsImlhdCI6MTczODc0NzM0NywiZXhwIjoxNzM4NzUwOTQ3fQ.gOLU8Wu41mBYY6Tpr5dC8AwaAq88c49SwBNkABZV58A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tasks\": [\r\n    {\r\n      \"title\": \"Task 5\",\r\n      \"description\": \"This is the 5th task\",\r\n      \"dueDate\": \"2025-02-15\",\r\n      \"ProjectId\": 4\r\n    },\r\n    {\r\n      \"title\": \"Task 6\",\r\n      \"description\": \"This is the 6th task\",\r\n      \"dueDate\": \"2025-02-20\",\r\n      \"ProjectId\": 4\r\n    },\r\n    {\r\n      \"title\": \"Task 7\",\r\n      \"description\": \"This is the 7th task\",\r\n      \"dueDate\": \"2025-02-25\",\r\n      \"ProjectId\": 6\r\n    },\r\n    {\r\n      \"title\": \"Task 8\",\r\n      \"description\": \"This is the 8th task\",\r\n      \"dueDate\": \"2025-02-23\",\r\n      \"ProjectId\": 6\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/bulk-tasks/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"bulk-tasks",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create bulk data successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"tasks\": [\r\n    {\r\n      \"title\": \"Task 5\",\r\n      \"description\": \"This is the 5th task\",\r\n      \"dueDate\": \"2025-02-15\",\r\n      \"ProjectId\": 4\r\n    },\r\n    {\r\n      \"title\": \"Task 6\",\r\n      \"description\": \"This is the 6th task\",\r\n      \"dueDate\": \"2025-02-20\",\r\n      \"ProjectId\": 4\r\n    },\r\n    {\r\n      \"title\": \"Task 7\",\r\n      \"description\": \"This is the 7th task\",\r\n      \"dueDate\": \"2025-02-25\",\r\n      \"ProjectId\": 6\r\n    },\r\n    {\r\n      \"title\": \"Task 8\",\r\n      \"description\": \"This is the 8th task\",\r\n      \"dueDate\": \"2025-02-23\",\r\n      \"ProjectId\": 6\r\n    }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/bulk-tasks/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"bulk-tasks",
+										"create"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "924"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39c-hgnHyxRAIbOGEjw6saH6jhRQom4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 04 Feb 2025 04:53:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"4 tasks created successfully.\",\n    \"data\": [\n        {\n            \"StatusId\": 1,\n            \"id\": 20,\n            \"title\": \"Task 5\",\n            \"description\": \"This is the 5th task\",\n            \"dueDate\": \"2025-02-15T00:00:00.000Z\",\n            \"UserId\": 16,\n            \"ProjectId\": 4,\n            \"updatedAt\": \"2025-02-04T04:53:17.108Z\",\n            \"createdAt\": \"2025-02-04T04:53:17.108Z\"\n        },\n        {\n            \"StatusId\": 1,\n            \"id\": 21,\n            \"title\": \"Task 6\",\n            \"description\": \"This is the 6th task\",\n            \"dueDate\": \"2025-02-20T00:00:00.000Z\",\n            \"UserId\": 16,\n            \"ProjectId\": 4,\n            \"updatedAt\": \"2025-02-04T04:53:17.136Z\",\n            \"createdAt\": \"2025-02-04T04:53:17.136Z\"\n        },\n        {\n            \"StatusId\": 1,\n            \"id\": 22,\n            \"title\": \"Task 7\",\n            \"description\": \"This is the 7th task\",\n            \"dueDate\": \"2025-02-25T00:00:00.000Z\",\n            \"UserId\": 16,\n            \"ProjectId\": 6,\n            \"updatedAt\": \"2025-02-04T04:53:17.144Z\",\n            \"createdAt\": \"2025-02-04T04:53:17.144Z\"\n        },\n        {\n            \"StatusId\": 1,\n            \"id\": 23,\n            \"title\": \"Task 8\",\n            \"description\": \"This is the 8th task\",\n            \"dueDate\": \"2025-02-23T00:00:00.000Z\",\n            \"UserId\": 16,\n            \"ProjectId\": 6,\n            \"updatedAt\": \"2025-02-04T04:53:17.151Z\",\n            \"createdAt\": \"2025-02-04T04:53:17.151Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "assign bulk task to a user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoiamFyaXdhbGF5YWFkbGV5QGdtYWlsLmNvbSIsImlhdCI6MTczODc0NzM0NywiZXhwIjoxNzM4NzUwOTQ3fQ.gOLU8Wu41mBYY6Tpr5dC8AwaAq88c49SwBNkABZV58A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"taskIds\": [30,31]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/bulk-tasks/assign/19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"bulk-tasks",
+								"assign",
+								"19"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "successfully assign bulk task to a user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"taskIds\": [20, 21, 22, 23]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/bulk-tasks/assign/19",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"bulk-tasks",
+										"assign",
+										"19"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "175"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"af-GOnN/YuQp8XpEJYHO7E2d1JuioU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 04 Feb 2025 05:35:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Tasks assigned to user successfully\",\n    \"assignedTasks\": [\n        {\n            \"id\": 20,\n            \"title\": \"Task 5\"\n        },\n        {\n            \"id\": 21,\n            \"title\": \"Task 6\"\n        },\n        {\n            \"id\": 22,\n            \"title\": \"Task 7\"\n        },\n        {\n            \"id\": 23,\n            \"title\": \"Task 8\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "assign invalid tasks to a user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"taskIds\": [23, 44, 546]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/bulk-tasks/assign/19",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"bulk-tasks",
+										"assign",
+										"19"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"50-XdgrfFIIR7Nvjl55FJEYS5UOeSc\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 04 Feb 2025 05:38:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"statusCode\": 404,\n    \"message\": \"Tasks not found for IDs: 44, 546\"\n}"
+						},
+						{
+							"name": "assign bulk task to a invalid user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"taskIds\": [15,16,17]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/bulk-tasks/assign/44",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"bulk-tasks",
+										"assign",
+										"44"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-+kMdS0rUWJ/TwfCP9Pf45v8of1A\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 04 Feb 2025 05:40:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"statusCode\": 404,\n    \"message\": \"User not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete bulk task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoiamFyaXdhbGF5YWFkbGV5QGdtYWlsLmNvbSIsImlhdCI6MTczODc0NzM0NywiZXhwIjoxNzM4NzUwOTQ3fQ.gOLU8Wu41mBYY6Tpr5dC8AwaAq88c49SwBNkABZV58A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"taskIds\": [16,17,18,20]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/bulk-tasks/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"bulk-tasks",
+								"delete"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "invalid task ids",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"taskIds\": [1, 2, 3]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/bulk-tasks/delete",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"bulk-tasks",
+										"delete"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5f-+cSC70QCPKH7mwZyS27Gdh3yJLo\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 04 Feb 2025 05:47:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"statusCode\": 404,\n    \"message\": \"No tasks found to delete with the provided IDs.\"\n}"
+						},
+						{
+							"name": "delete task successfully",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"taskIds\": [23]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/bulk-tasks/delete",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"bulk-tasks",
+										"delete"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-D3P34iuihcC4MchkbHOuYq7uTiQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 04 Feb 2025 05:47:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"1 tasks deleted successfully.\"\n}"
 						}
 					]
 				}
