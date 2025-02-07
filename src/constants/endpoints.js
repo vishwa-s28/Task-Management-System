@@ -16,13 +16,13 @@ const AUTH_ENDPOINTS = {
 
 const BULK_TASKS_ENDPOINTS = {
   CREATE: "/create",
-  ASSIGN: "/assign/:userId",
+  ASSIGN: "/assign/:user_id",
   DELETE: "/delete",
 };
 
 const FILTER_TASK_ENDPOINTS = {
   STATUS: "/status",
-  DUE_DATE: "/dueDate",
+  DUE_DATE: "/due_date",
   ASSIGNEE: "/assignee",
   SHARED: "/shared",
 };
@@ -36,20 +36,20 @@ const PROJECTS_ENDPOINTS = {
 };
 
 const SHARE_TASK_ENDPOINTS = {
-  GET_SHARED_USERS: "/:taskId",
-  SHARE_TASK: "/:taskId",
+  GET_SHARED_USERS: "/:task_id",
+  SHARE_TASK: "/:task_id",
 };
 
 const STATUS_ENDPOINTS = {
   GET_ALL: "/",
   ADD: "/",
-  UPDATE: "/:statusId",
-  DELETE: "/:statusId",
+  UPDATE: "/:status_id",
+  DELETE: "/:status_id",
 };
 
 const SUBTASK_ENDPOINTS = {
-  GET_SUBTASKS: "/:taskId",
-  ADD_SUBTASK: "/:taskId",
+  GET_SUBTASKS: "/:task_id",
+  ADD_SUBTASK: "/:task_id",
 };
 
 const TASK_ENDPOINTS = {

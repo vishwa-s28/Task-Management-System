@@ -44,14 +44,14 @@ const createBulkTasks = async (req, res, next) => {
 
 const assignTasksToUser = async (req, res, next) => {
   try {
-    const { userId } = req.params;
+    const { user_id } = req.params;
     const { taskIds } = req.body;
 
-    if (!userId || !Array.isArray(taskIds) || taskIds.length === 0) {
+    if (!user_id || !Array.isArray(taskIds) || taskIds.length === 0) {
       throw new AppError(TASK_ERRORS.INVALID_ASSIGN_INPUT, 400);
     }
 
-    const user = await User.findByPk(userId);
+    const user = await User.findByPk(user_id);
     if (!user) {
       throw new AppError(TASK_ERRORS.USER_NOT_FOUND, 404);
     }

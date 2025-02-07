@@ -39,7 +39,7 @@ const addStatus = async (req, res, next) => {
 const updateStatus = async (req, res, next) => {
   try {
     const { name } = req.body;
-    const statusId = req.params.statusId;
+    const statusId = req.params.status_id;
     const { Status } = db;
 
     const status = await Status.findByPk(statusId);
@@ -63,7 +63,7 @@ const updateStatus = async (req, res, next) => {
 const deleteStatus = async (req, res, next) => {
   try {
     const { Status } = db;
-    const statusId = req.params.statusId;
+    const statusId = req.params.status_id;
 
     const status = await Status.findByPk(statusId);
 

@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import db from "../sequelize-client.js";
 import { AUTH_ERRORS } from "../constants/errorMessages.js";
+import "dotenv/config";
 
 const authenticate = async (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];

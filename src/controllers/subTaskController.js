@@ -4,11 +4,11 @@ import { SUBTASK_ERRORS, SUBTASK_MESSAGES, TASK_ERRORS } from "../constants/erro
 
 const addSubtask = async (req, res, next) => {
   try {
-    const { taskId } = req.params;
+    const { task_id } = req.params;
     const { title } = req.body;
     const { SubTask, Task } = db;
 
-    const task = await Task.findByPk(taskId);
+    const task = await Task.findByPk(task_id);
     if (!task) {
       throw new AppError(TASK_ERRORS.TASK_NOT_FOUND, 404);
     }
@@ -18,7 +18,7 @@ const addSubtask = async (req, res, next) => {
     }
 
     const subtask = await SubTask.create({
-      TaskId: taskId,
+      TaskId: task_id,
       title,
     });
 
@@ -33,16 +33,16 @@ const addSubtask = async (req, res, next) => {
 
 const getSubtasks = async (req, res, next) => {
   try {
-    const { taskId } = req.params;
+    const { task_id } = req.params;
     const { SubTask, Task, Status } = db;
 
-    const task = await Task.findByPk(taskId);
+    const task = await Task.findByPk(task_id);
     if (!task) {
       throw new AppError(TASK_ERRORS.TASK_NOT_FOUND, 404);
     }
 
     const subtasks = await SubTask.findAll({
-      where: { TaskId: taskId },
+      where: { TaskId: task_id },
       include: [
         {
           model: Status,

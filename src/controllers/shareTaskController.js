@@ -7,7 +7,7 @@ const { Task, User } = db;
 
 const shareTask = async (req, res, next) => {
   try {
-    const { taskId } = req.params;
+    const { task_id } = req.params;
     const { userIds } = req.body;
 
     // Validate input
@@ -16,9 +16,9 @@ const shareTask = async (req, res, next) => {
     }
 
     // Fetch task
-    const task = await Task.findByPk(taskId);
+    const task = await Task.findByPk(task_id);
     if (!task) {
-      throw new AppError(TASK_ERRORS.TASKS_NOT_FOUND.replace("{taskIds}", taskId), 404);
+      throw new AppError(TASK_ERRORS.TASKS_NOT_FOUND.replace("{taskIds}", task_id), 404);
     }
 
     // Fetch users
@@ -62,10 +62,10 @@ const shareTask = async (req, res, next) => {
 
 const getSharedUsers = async (req, res, next) => {
   try {
-    const { taskId } = req.params;
+    const { task_id } = req.params;
 
     // Fetch task along with shared users
-    const task = await Task.findByPk(taskId, {
+    const task = await Task.findByPk(task_id, {
       include: [
         {
           model: db.User,
@@ -76,7 +76,7 @@ const getSharedUsers = async (req, res, next) => {
     });
 
     if (!task) {
-      throw new AppError(TASK_ERRORS.TASKS_NOT_FOUND.replace("{taskIds}", taskId), 404);
+      throw new AppError(TASK_ERRORS.TASKS_NOT_FOUND.replace("{taskIds}", task_id), 404);
     }
 
     // Respond with shared user data
