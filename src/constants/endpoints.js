@@ -12,6 +12,7 @@ const ENDPOINTS = {
 const AUTH_ENDPOINTS = {
   REGISTER: "/register",
   LOGIN: "/login",
+  LOGOUT: "/logout",
 };
 
 const BULK_TASKS_ENDPOINTS = {

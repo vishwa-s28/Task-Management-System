@@ -88,4 +88,21 @@ const loginUser = async (req, res, next) => {
   }
 };
 
-export { registerUser, loginUser };
+const logoutUser = async (req, res, next) => {
+  try {
+    const { User } = db;
+    const user = await User.findByPk(req.user.id);
+    if (!user) {
+      throw new AppError(AUTH_ERRORS.USER_NOT_FOUND, 404);
+    }
+
+    user.token = null;
+    await user.save();
+
+    res.status(200).json({ message: AUTH_ERRORS.LOGOUT_SUCCESS });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { registerUser, loginUser, logoutUser };

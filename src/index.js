@@ -9,10 +9,11 @@ import { runTaskReminderJob } from "./utils/taskReminder.js";
 import inputSanitization from "./middlewares/inputSanitization.js";
 import rateLimiter from "./middlewares/rateLimiter.js";
 import compression from "compression";
-
+import cors from "cors";
 const app = express();
 
 // Helps mitigate XSS attacks by setting a Content-Security-Policy header.
+app.use(cors());
 app.use(helmet());
 app.use(express.json());
 app.use(inputSanitization);

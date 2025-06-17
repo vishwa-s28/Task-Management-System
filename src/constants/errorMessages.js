@@ -42,6 +42,8 @@ const AUTH_ERRORS = {
   USER_NOT_FOUND: "User not found.",
   INVALID_TOKEN: "Invalid or expired token.",
   INSUFFICIENT_PERMISSIONS: "Access denied. Insufficient permissions.",
+
+  LOGOUT_SUCCESS: "Logged out successfully.",
 };
 
 const TASK_ERRORS = {
