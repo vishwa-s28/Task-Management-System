@@ -88,6 +88,18 @@ const STATUS_MESSAGES = {
   DELETE_SUCCESS: "Status deleted successfully.",
 };
 
+const PRIORITY_ERRORS = {
+  NAME_REQUIRED: "Please add the name of the priority.",
+  NOT_FOUND: "Priority not found.",
+};
+
+const PRIORITY_MESSAGES = {
+  FETCH_SUCCESS: "Fetched priority successfully.",
+  ADD_SUCCESS: "Priority added successfully.",
+  UPDATE_SUCCESS: "Priority updated successfully.",
+  DELETE_SUCCESS: "Priority deleted successfully.",
+};
+
 const SUBTASK_ERRORS = {
   TITLE_REQUIRED: "Subtask title is required.",
 };
@@ -113,6 +125,8 @@ export {
   PROJECT_ERRORS,
   STATUS_ERRORS,
   STATUS_MESSAGES,
+  PRIORITY_ERRORS,
+  PRIORITY_MESSAGES,
   SUBTASK_ERRORS,
   SUBTASK_MESSAGES,
   TASK_MESSAGES,

@@ -5,6 +5,7 @@ import sequelize from "./config/db.js";
 import user from "./models/user.js";
 import task from "./models/task.js";
 import status from "./models/status.js";
+import priority from "./models/priority.js"; 
 import subtask from "./models/subtask.js";
 import reminder from "./models/reminder.js";
 import project from "./models/project.js";
@@ -14,6 +15,7 @@ const db = {
   User: user(sequelize, DataTypes),
   Task: task(sequelize, DataTypes),
   Status: status(sequelize, DataTypes),
+  Priority: priority(sequelize, DataTypes),
   SubTask: subtask(sequelize, DataTypes),
   Reminder: reminder(sequelize, DataTypes),
   Project: project(sequelize, DataTypes),

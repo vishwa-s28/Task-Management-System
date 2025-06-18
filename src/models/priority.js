@@ -1,5 +1,5 @@
 const defineStatusModel = (sequelize, DataTypes) => {
-  const Status = sequelize.define("Status", {
+  const Priority = sequelize.define("Priority", {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -12,19 +12,14 @@ const defineStatusModel = (sequelize, DataTypes) => {
     },
   });
 
-  Status.associate = (models) => {
-    Status.hasMany(models.Task, {
-      foreignKey: "StatusId",
+  Priority.associate = (models) => {
+    Priority.hasMany(models.Task, {
+      foreignKey: "PriorityId",
       as: "tasks",
-    });
-
-    Status.hasMany(models.SubTask, {
-      foreignKey: "StatusId",
-      as: "subtasks",
     });
   };
 
-  return Status;
+  return Priority;
 };
 
 export default defineStatusModel;

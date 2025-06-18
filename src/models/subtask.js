@@ -8,7 +8,7 @@ const defineSubtaskModel = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 1,
-    },
+    }
   });
 
   Subtask.associate = (models) => {

@@ -17,6 +17,11 @@ const defineTaskModel = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 1,
     },
+    PriorityId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 1,
+    },
     UserId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -42,6 +47,11 @@ const defineTaskModel = (sequelize, DataTypes) => {
     Task.belongsTo(models.Status, {
       foreignKey: "StatusId",
       as: "status",
+    });
+
+    Task.belongsTo(models.Priority, {
+      foreignKey: "PriorityId",
+      as: "priority",
     });
 
     Task.hasMany(models.Reminder, {

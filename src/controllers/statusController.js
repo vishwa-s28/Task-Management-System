@@ -18,14 +18,14 @@ const getAllStatus = async (req, res, next) => {
 
 const addStatus = async (req, res, next) => {
   try {
-    const { name } = req.body;
+    const { name, color } = req.body;
     const { Status } = db;
 
     if (!name) {
       throw new AppError(STATUS_ERRORS.NAME_REQUIRED, 400);
     }
 
-    const status = await Status.create({ name });
+    const status = await Status.create({ name, color });
 
     res.status(201).json({
       message: STATUS_MESSAGES.ADD_SUCCESS,
@@ -38,7 +38,7 @@ const addStatus = async (req, res, next) => {
 
 const updateStatus = async (req, res, next) => {
   try {
-    const { name } = req.body;
+    const { name, color } = req.body;
     const statusId = req.params.status_id;
     const { Status } = db;
 
@@ -49,6 +49,7 @@ const updateStatus = async (req, res, next) => {
     }
 
     status.name = name || status.name;
+    status.color = color || status.color;
     await status.save();
 
     res.status(200).json({

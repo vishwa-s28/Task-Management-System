@@ -4,6 +4,7 @@ const ENDPOINTS = {
   PROJECTS: "/projects",
   SUBTASK: "/task/subtask",
   STATUS: "/status",
+  PRIORITY: "/priority",
   SHARE_TASK: "/task/share",
   FILTER_TASK: "/filter-task",
   BULK_TASKS: "/bulk-tasks",
@@ -48,6 +49,13 @@ const STATUS_ENDPOINTS = {
   DELETE: "/:status_id",
 };
 
+const PRIORITY_ENDPOINTS = {
+  GET_ALL: "/",
+  ADD: "/",
+  UPDATE: "/:priority_id",
+  DELETE: "/:priority_id",
+}
+
 const SUBTASK_ENDPOINTS = {
   GET_SUBTASKS: "/:task_id",
   ADD_SUBTASK: "/:task_id",
@@ -70,6 +78,7 @@ export {
   PROJECTS_ENDPOINTS,
   SHARE_TASK_ENDPOINTS,
   STATUS_ENDPOINTS,
+  PRIORITY_ENDPOINTS,
   SUBTASK_ENDPOINTS,
   TASK_ENDPOINTS,
 };
