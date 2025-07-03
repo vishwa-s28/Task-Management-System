@@ -10,6 +10,7 @@ import priorityRoutes from "../routes/priorityRoutes.js";
 import shareTaskRoutes from "../routes/shareTaskRoutes.js";
 import filterTaskRoutes from "../routes/filterTaskRoutes.js";
 import bulkTaskRoutes from "../routes/bulkTaskRoutes.js";
+import userRoutes from "../routes/userRoutes.js";
 import { ENDPOINTS } from "../constants/endpoints.js";
 
 const router = express.Router();
@@ -19,7 +20,6 @@ router.use(ENDPOINTS.TASK, authenticate, taskRoutes);
 router.use(
   ENDPOINTS.PROJECTS,
   authenticate,
-  authorize(["admin"]),
   projectRoutes
 );
 router.use(
@@ -28,8 +28,8 @@ router.use(
   authorize(["admin"]),
   subTaskRoutes
 );
-router.use(ENDPOINTS.STATUS, authenticate, authorize(["admin"]), statusRoutes);
-router.use(ENDPOINTS.PRIORITY, authenticate, authorize(["admin"]), priorityRoutes);
+router.use(ENDPOINTS.STATUS, authenticate, statusRoutes);
+router.use(ENDPOINTS.PRIORITY, authenticate, priorityRoutes);
 router.use(ENDPOINTS.SHARE_TASK, authenticate, shareTaskRoutes);
 router.use(ENDPOINTS.FILTER_TASK, authenticate, filterTaskRoutes);
 router.use(
@@ -38,5 +38,6 @@ router.use(
   authorize(["admin"]),
   bulkTaskRoutes
 );
+router.use(ENDPOINTS.USERS, authenticate, userRoutes);
 
 export default router;

@@ -8,6 +8,7 @@ const ENDPOINTS = {
   SHARE_TASK: "/task/share",
   FILTER_TASK: "/filter-task",
   BULK_TASKS: "/bulk-tasks",
+  USERS: "/users"
 };
 
 const AUTH_ENDPOINTS = {
@@ -36,6 +37,10 @@ const PROJECTS_ENDPOINTS = {
   UPDATE_PROJECT: "/:id",
   DELETE_PROJECT: "/:id",
 };
+
+const USERS_ENDPOINTS = {
+  GET_ALL: "/"
+}
 
 const SHARE_TASK_ENDPOINTS = {
   GET_SHARED_USERS: "/:task_id",
@@ -76,6 +81,7 @@ export {
   BULK_TASKS_ENDPOINTS,
   FILTER_TASK_ENDPOINTS,
   PROJECTS_ENDPOINTS,
+  USERS_ENDPOINTS,
   SHARE_TASK_ENDPOINTS,
   STATUS_ENDPOINTS,
   PRIORITY_ENDPOINTS,

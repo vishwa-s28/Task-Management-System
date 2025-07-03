@@ -22,9 +22,9 @@ const defineTaskModel = (sequelize, DataTypes) => {
       allowNull: true,
       defaultValue: 1,
     },
-    UserId: {
+    CreatedBy: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     ProjectId: {
       type: DataTypes.INTEGER,
@@ -34,14 +34,13 @@ const defineTaskModel = (sequelize, DataTypes) => {
 
   Task.associate = (models) => {
     Task.belongsTo(models.User, {
-      foreignKey: "UserId",
-      as: "user",
+      foreignKey: "CreatedBy",
+      as: "creator",
     });
 
-    Task.hasMany(models.SubTask, {
-      foreignKey: "TaskId",
-      as: "subtasks",
-      onDelete: "CASCADE",
+    Task.belongsTo(models.Project, {
+      foreignKey: "ProjectId",
+      as: "project",
     });
 
     Task.belongsTo(models.Status, {
@@ -52,6 +51,12 @@ const defineTaskModel = (sequelize, DataTypes) => {
     Task.belongsTo(models.Priority, {
       foreignKey: "PriorityId",
       as: "priority",
+    });
+
+    Task.hasMany(models.SubTask, {
+      foreignKey: "TaskId",
+      as: "subtasks",
+      onDelete: "CASCADE",
     });
 
     Task.hasMany(models.Reminder, {
@@ -65,9 +70,21 @@ const defineTaskModel = (sequelize, DataTypes) => {
       foreignKey: "TaskId",
     });
 
-    Task.belongsTo(models.Project, {
-      foreignKey: "ProjectId",
-      as: "project",
+    Task.belongsToMany(models.User, {
+      through: "TaskAssignees",
+      as: "assignees",
+      foreignKey: "TaskId"
+    });
+
+    Task.belongsToMany(models.Label, {
+      through: "TaskLabels",
+      as: "labels",
+      foreignKey: "TaskId"
+    });
+
+    Task.hasMany(models.Comment, {
+      foreignKey: "TaskId",
+      as: "comments"
     });
   };
 

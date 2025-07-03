@@ -34,7 +34,12 @@ const getAllTasks = async (req, res, next) => {
       include: [
         {
           model: User,
-          as: "user",
+          as: "creator",
+          attributes: ["name", "email"],
+        },
+        {
+          model: User,
+          as: "assignees",
           attributes: ["name", "email"],
         },
         {

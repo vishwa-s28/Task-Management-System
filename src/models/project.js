@@ -11,6 +11,13 @@ const defineProjectModel = (sequelize, DataTypes) => {
       foreignKey: "ProjectId",
       as: "tasks",
     });
+
+    Project.belongsToMany(models.User, {
+      through: models.ProjectUser,
+      as: "members",
+      foreignKey: "ProjectId"
+    });
+
   };
 
   return Project;

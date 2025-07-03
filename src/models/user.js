@@ -22,21 +22,38 @@ const defineUserModel = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    UserRoleId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    }
   });
 
   User.associate = (models) => {
+    User.belongsTo(models.UserRole, {
+      foreignKey: "UserRoleId",
+      as: "roleInfo",
+    });
     User.hasMany(models.Task, {
-      foreignKey: "UserId",
-      as: "tasks",
+      foreignKey: "CreatedBy",
+      as: "createdTasks",
     });
     User.belongsToMany(models.Task, {
       through: "UserTasks",
       as: "sharedTasks",
       foreignKey: "UserId",
     });
+    User.belongsToMany(models.Task, {
+      through: "TaskAssignees",
+      as: "assignedTasks",
+      foreignKey: "UserId",
+    });
     User.hasMany(models.Reminder, {
       foreignKey: "UserId",
       as: "reminders",
+    });
+    User.hasMany(models.Comment, {
+      foreignKey: "UserId",
+      as: "comments",
     });
   };
 

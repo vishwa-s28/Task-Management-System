@@ -8,7 +8,12 @@ const defineSubtaskModel = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 1,
-    }
+    },
+    PriorityId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+    },
   });
 
   Subtask.associate = (models) => {
@@ -21,6 +26,11 @@ const defineSubtaskModel = (sequelize, DataTypes) => {
     Subtask.belongsTo(models.Status, {
       foreignKey: "StatusId",
       as: "status",
+    });
+
+    Subtask.belongsTo(models.Priority, {
+      foreignKey: "PriorityId",
+      as: "priority",
     });
   };
 

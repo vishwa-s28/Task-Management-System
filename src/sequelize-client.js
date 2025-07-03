@@ -9,6 +9,10 @@ import priority from "./models/priority.js";
 import subtask from "./models/subtask.js";
 import reminder from "./models/reminder.js";
 import project from "./models/project.js";
+import comment from "./models/comment.js";
+import label from "./models/label.js";
+import userRole from "./models/userRole.js";
+import projectUser from "./models/projectUser.js";
 
 const db = {
   sequelize: sequelize,
@@ -19,6 +23,10 @@ const db = {
   SubTask: subtask(sequelize, DataTypes),
   Reminder: reminder(sequelize, DataTypes),
   Project: project(sequelize, DataTypes),
+  Comment: comment(sequelize, DataTypes),
+  Label: label(sequelize, DataTypes),
+  UserRole: userRole(sequelize, DataTypes),
+  ProjectUser : projectUser(sequelize, DataTypes),
 
   models: sequelize.models,
 };

@@ -17,6 +17,11 @@ const defineStatusModel = (sequelize, DataTypes) => {
       foreignKey: "PriorityId",
       as: "tasks",
     });
+
+    Priority.hasMany(models.SubTask, {
+      foreignKey: "PriorityId",
+      as: "subtasks",
+    });
   };
 
   return Priority;
